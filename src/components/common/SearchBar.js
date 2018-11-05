@@ -3,16 +3,29 @@ import { StyleSheet, Text, View, TextInput } from 'react-native';
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const SearchBar = ({ enableFilter, onPressSearch, onPressFilter }) => {
-  const { container, inputContainer, input, buttonsContainer, button } = styles;
+const SearchBar = ({
+  value,
+  onChangeText,
+  enableFilter,
+  onPressSearch,
+  onPressFilter
+}) => {
+  const {
+    container,
+    inputContainer,
+    input,
+    buttonsContainer,
+    searchButton,
+    filterButton
+  } = styles;
   const filter = () => {
     if (enableFilter) {
       return (
         <Icon.Button
-          style={button}
+          style={filterButton}
           name="tune"
           color="#818181"
-          backgroundColor="#F5FCFF"
+          backgroundColor="#F1F1F1"
           onPress={onPressFilter}
         />
       );
@@ -21,14 +34,19 @@ const SearchBar = ({ enableFilter, onPressSearch, onPressFilter }) => {
   return (
     <View style={container}>
       <View style={inputContainer}>
-        <TextInput style={input} placeholder="Search" />
+        <TextInput
+          style={input}
+          placeholder="Search"
+          value={value}
+          onChangeText={onChangeText}
+        />
       </View>
       <View style={buttonsContainer}>
         <Icon.Button
-          style={button}
+          style={searchButton}
           name="magnify"
           color="#818181"
-          backgroundColor="#F5FCFF"
+          backgroundColor="#F1F1F1"
           onPress={onPressSearch}
         />
         {filter()}
@@ -39,11 +57,14 @@ const SearchBar = ({ enableFilter, onPressSearch, onPressFilter }) => {
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: '#F1F1F1',
     flexDirection: 'row',
-    height: 40
+    height: 40,
+    borderRadius: 4.5
   },
   inputContainer: {
-    flex: 4
+    flex: 4,
+    paddingLeft: 15
   },
   input: {
     height: 40
@@ -52,7 +73,12 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row'
   },
-  button: {}
+  searchButton: {
+    flex: 1
+  },
+  filterButton: {
+    flex: 1
+  }
 });
 
 export default SearchBar;

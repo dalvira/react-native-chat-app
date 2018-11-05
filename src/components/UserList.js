@@ -8,10 +8,11 @@ class UserList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      photo: 'photo',
+      searchInput: '',
+      photoPath: '../img/girlphoto.png',
+      username: '@flowerchild43',
       name: 'Laura',
       status: 'Im hungry',
-      online: 'online',
       distance: '2 mi'
     };
   }
@@ -19,6 +20,10 @@ class UserList extends Component {
   render() {
     const onPressSearch = () => {
       console.log('Search');
+      console.log(this.state.searchInput);
+      this.props.navigation.navigate('User', {
+        searchInput: this.state.searchInput
+      });
     };
 
     const onPressFilter = () => {
@@ -30,22 +35,28 @@ class UserList extends Component {
       this.props.navigation.navigate('User');
     };
 
+    const onChangeText = searchInput => {
+      this.setState({ searchInput: searchInput });
+    };
+
     const { container, searchBarContainer } = styles;
 
     return (
       <View style={container}>
         <View style={searchBarContainer}>
           <SearchBar
+            value={this.state.searchInput}
+            onChangeText={onChangeText}
             enableFilter={true}
             onPressSearch={onPressSearch}
             onPressFilter={onPressFilter}
           />
         </View>
         <UserItem
-          photo={this.state.photo}
+          photoPath={this.state.photoPath}
+          username={this.state.username}
           name={this.state.name}
           status={this.state.status}
-          online={this.state.online}
           distance={this.state.distance}
           onPressUserItem={onPressUserItem}
         />
@@ -57,13 +68,13 @@ class UserList extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F5FCFF'
+    backgroundColor: '#C9C7CB'
   },
   searchBarContainer: {
-    marginTop: 10,
-    marginBottom: 10,
-    marginLeft: 30,
-    marginRight: 20
+    paddingTop: 10,
+    paddingBottom: 10,
+    paddingLeft: 6,
+    paddingRight: 33
   }
 });
 

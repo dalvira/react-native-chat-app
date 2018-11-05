@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const UserItem = ({
-  photo,
+  photoPath,
+  username,
   name,
-  online,
   status,
   distance,
   onPressUserItem
@@ -14,29 +14,37 @@ const UserItem = ({
   const {
     container,
     photoContainer,
+    photoStyle,
+    namesContainer,
+    usernameContainer,
+    usernameStyle,
     nameContainer,
-    onlineContainer,
+    nameStyle,
     statusContainer,
-    distanceContainer
+    statusStyle,
+    distanceContainer,
+    distanceStyle
   } = styles;
 
   return (
     <TouchableOpacity onPress={onPressUserItem}>
       <View style={container}>
         <View style={photoContainer}>
-          <Text>{photo}</Text>
+          <Image style={photoStyle} source={require('../img/girlphoto.png')} />
         </View>
-        <View style={nameContainer}>
-          <Text>{name}</Text>
+        <View style={namesContainer}>
+          <View style={usernameContainer}>
+            <Text style={usernameStyle}>{username}</Text>
+          </View>
+          <View style={nameContainer}>
+            <Text style={nameStyle}>{name}</Text>
+          </View>
         </View>
         <View style={statusContainer}>
-          <Text>{status}</Text>
-        </View>
-        <View style={onlineContainer}>
-          <Text>{online}</Text>
+          <Text style={statusStyle}>{status}</Text>
         </View>
         <View style={distanceContainer}>
-          <Text>{distance}</Text>
+          <Text style={distanceStyle}>{distance}</Text>
         </View>
       </View>
     </TouchableOpacity>
@@ -45,23 +53,43 @@ const UserItem = ({
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row'
+    backgroundColor: '#F1F1F1',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
+    height: 80
   },
   photoContainer: {
-    flex: 1
+    flex: 1.3,
+    alignItems: 'center',
+    justifyContent: 'center'
   },
-  nameContainer: {
-    flex: 1
+  photoStyle: {
+    height: 45,
+    width: 45,
+    borderRadius: 22
   },
-  onlineContainer: {
-    flex: 1
+  namesContainer: {
+    flex: 1.7,
+    alignItems: 'flex-start',
+    justifyContent: 'center'
   },
+  usernameContainer: {},
+  usernameStyle: { fontWeight: '300', fontStyle: 'italic', color: '#818181' },
+  nameContainer: {},
+  nameStyle: { fontWeight: '500', color: '#474747' },
   statusContainer: {
-    flex: 1
+    flex: 2,
+    alignItems: 'center',
+    justifyContent: 'center'
   },
+  statusStyle: { fontWeight: '400', color: '#474747' },
   distanceContainer: {
-    flex: 1
-  }
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  distanceStyle: { fontWeight: '400', color: '#474747' }
 });
 
 export default UserItem;
