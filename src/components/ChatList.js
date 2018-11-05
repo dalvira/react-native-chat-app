@@ -17,29 +17,15 @@ class ChatList extends Component {
   }
 
   render() {
-    const onPressSearch = () => {
-      console.log('Search');
-    };
-
-    const onPressFilter = () => {
-      console.log('Filter');
-    };
-
     const onPressChatItem = () => {
       console.log('User Item');
       this.props.navigation.navigate('Chat');
     };
 
-    const { container, searchBarContainer } = styles;
+    const { container } = styles;
 
     return (
       <View style={container}>
-        <View style={searchBarContainer}>
-          <SearchBar
-            onPressSearch={onPressSearch}
-            onPressFilter={onPressFilter}
-          />
-        </View>
         <ChatItem
           photo={this.state.photo}
           name={this.state.name}
@@ -57,12 +43,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F5FCFF'
-  },
-  searchBarContainer: {
-    marginTop: 10,
-    marginBottom: 10,
-    marginLeft: 30
-    // marginRight: 10
   }
 });
 
