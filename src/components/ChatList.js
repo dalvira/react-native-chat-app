@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 
-import SearchBar from './common/SearchBar';
 import ChatItem from './ChatItem';
 
 class ChatList extends Component {

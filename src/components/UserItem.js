@@ -41,7 +41,7 @@ const UserItem = ({
           </View>
         </View>
         <View style={statusContainer}>
-          <Text style={statusStyle}>{status}</Text>
+          <Text style={statusStyle}>"{status}"</Text>
         </View>
         <View style={distanceContainer}>
           <Text style={distanceStyle}>{distance}</Text>

@@ -19,19 +19,14 @@ class UserList extends Component {
 
   render() {
     const onPressSearch = () => {
-      console.log('Search');
-      console.log(this.state.searchInput);
-      this.props.navigation.navigate('User', {
+      this.props.navigation.navigate('Chat', {
         searchInput: this.state.searchInput
       });
     };
 
-    const onPressFilter = () => {
-      console.log('Filter');
-    };
+    const onPressFilter = () => {};
 
     const onPressUserItem = () => {
-      console.log('User Item');
       this.props.navigation.navigate('User');
     };
 

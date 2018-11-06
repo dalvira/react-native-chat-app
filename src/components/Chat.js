@@ -1,50 +1,67 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  TouchableOpacity
+} from 'react-native';
 
+import Fire from '../Fire';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { GiftedChat } from 'react-native-gifted-chat';
 
-const Chat = ({ photo, name, age, online, status, distance, onPressChat }) => {
-  const {
-    container,
-    photoContainer,
-    nameContainer,
-    ageContainer,
-    onlineContainer,
-    statusContainer,
-    distanceContainer
-  } = styles;
+class Chat extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      messages: []
+    };
+  }
 
-  return (
-    <View style={container}>
-      <View style={photoContainer}>
-        <Text>Chat</Text>
+  componentWillMount() {
+    this.setState({
+      messages: [
+        {
+          _id: 1,
+          text: 'Hello developer',
+          createdAt: new Date(),
+          user: {
+            _id: 2,
+            name: 'React Native',
+            avatar: 'https://placeimg.com/140/140/any'
+          }
+        }
+      ]
+    });
+  }
+
+  render() {
+    const { container } = styles;
+
+    const onPressSend = messages => {
+      console.log('Send');
+      this.setState(previousState => ({
+        messages: GiftedChat.append(previousState.messages, messages)
+      }));
+    };
+
+    return (
+      <View style={container}>
+        <GiftedChat
+          messages={this.state.messages}
+          onSend={messages => onPressSend(messages)}
+          user={{
+            _id: 1
+          }}
+        />
       </View>
-    </View>
-  );
-};
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  photoContainer: {
-    flex: 1
-  },
-  nameContainer: {
-    flex: 1
-  },
-  ageContainer: {
-    flex: 1
-  },
-  onlineContainer: {
-    flex: 1
-  },
-  statusContainer: {
-    flex: 1
-  },
-  distanceContainer: {
     flex: 1
   }
 });

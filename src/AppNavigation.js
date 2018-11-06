@@ -10,11 +10,13 @@ import User from './components/User';
 
 import ChatList from './components/ChatList';
 import Chat from './components/Chat';
+
 import Profile from './components/Profile';
 
 const UserListStack = createStackNavigator({
   UserList: { screen: UserList },
-  User: { screen: User }
+  User: { screen: User },
+  Chat: { screen: Chat }
 });
 
 const ChatListStack = createStackNavigator({
