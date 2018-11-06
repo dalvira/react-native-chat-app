@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const User = ({ photo, name, age, online, status, distance, onPressChat }) => {
+const User = ({ navigation, photo, name, age, online, status, distance }) => {
   const {
     container,
     photoContainer,
@@ -13,6 +13,10 @@ const User = ({ photo, name, age, online, status, distance, onPressChat }) => {
     statusContainer,
     distanceContainer
   } = styles;
+
+  const onPressChat = () => {
+    navigation.navigate('Chat');
+  };
 
   return (
     <View style={container}>

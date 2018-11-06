@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+  createSwitchNavigator,
   createBottomTabNavigator,
   createStackNavigator
 } from 'react-navigation';
@@ -12,6 +13,10 @@ import ChatList from './components/ChatList';
 import Chat from './components/Chat';
 
 import Profile from './components/Profile';
+
+import LogInContainer from './containers/LogInContainer';
+import RegisterContainer from './containers/RegisterContainer';
+import AuthLoading from './components/AuthLoading';
 
 const UserListStack = createStackNavigator({
   UserList: { screen: UserList },
@@ -28,7 +33,7 @@ const ProfileStack = createStackNavigator({
   Profile: { screen: Profile }
 });
 
-const TabBar = createBottomTabNavigator(
+const TabNav = createBottomTabNavigator(
   {
     UserListStack: { screen: UserListStack },
     ChatListStack: { screen: ChatListStack },
@@ -58,4 +63,25 @@ const TabBar = createBottomTabNavigator(
   }
 );
 
-export default TabBar;
+const AuthStack = createStackNavigator(
+  {
+    LogInContainer: LogInContainer,
+    RegisterContainer: RegisterContainer
+  },
+  {
+    headerMode: 'none'
+  }
+);
+
+const SwitchNav = createSwitchNavigator(
+  {
+    AuthLoading: AuthLoading,
+    TabNav: TabNav,
+    AuthStack: AuthStack
+  },
+  {
+    initialRouteName: 'AuthLoading'
+  }
+);
+
+export default TabNav;
