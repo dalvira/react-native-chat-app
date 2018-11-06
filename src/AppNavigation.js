@@ -24,11 +24,15 @@ const ChatListStack = createStackNavigator({
   Chat: { screen: Chat }
 });
 
+const ProfileStack = createStackNavigator({
+  Profile: { screen: Profile }
+});
+
 const TabBar = createBottomTabNavigator(
   {
     UserListStack: { screen: UserListStack },
     ChatListStack: { screen: ChatListStack },
-    Profile: { screen: Profile }
+    ProfileStack: { screen: ProfileStack }
   },
   {
     navigationOptions: ({ navigation }) => ({
@@ -39,7 +43,7 @@ const TabBar = createBottomTabNavigator(
           iconName = `account-multiple${focused ? '' : '-outline'}`;
         } else if (routeName === 'ChatListStack') {
           iconName = `message-text${focused ? '' : '-outline'}`;
-        } else if (routeName === 'Profile') {
+        } else if (routeName === 'ProfileStack') {
           iconName = `account${focused ? '' : '-outline'}`;
         }
         return (

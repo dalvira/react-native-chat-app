@@ -39,7 +39,6 @@ class Chat extends Component {
     const { container } = styles;
 
     const onPressSend = messages => {
-      console.log('Send');
       this.setState(previousState => ({
         messages: GiftedChat.append(previousState.messages, messages)
       }));
