@@ -7,7 +7,6 @@ import {
   TouchableOpacity
 } from 'react-native';
 
-import Fire from '../Fire';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { GiftedChat } from 'react-native-gifted-chat';
 
