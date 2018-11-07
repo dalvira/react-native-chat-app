@@ -19,9 +19,7 @@ class UserList extends Component {
 
   render() {
     const onPressSearch = () => {
-      this.props.navigation.navigate('Chat', {
-        searchInput: this.state.searchInput
-      });
+      this.props.navigation.navigate('ChatRoomContainer');
     };
 
     const onPressFilter = () => {};

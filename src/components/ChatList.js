@@ -18,7 +18,7 @@ class ChatList extends Component {
   render() {
     const onPressChatItem = () => {
       console.log('User Item');
-      this.props.navigation.navigate('Chat');
+      this.props.navigation.navigate('ChatRoom');
     };
 
     const { container } = styles;

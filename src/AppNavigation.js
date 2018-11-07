@@ -10,7 +10,7 @@ import UserList from './components/UserList';
 import User from './components/User';
 
 import ChatList from './components/ChatList';
-import Chat from './components/Chat';
+import ChatRoomContainer from './containers/ChatRoomContainer';
 
 import Profile from './components/Profile';
 
@@ -21,12 +21,12 @@ import AuthLoading from './components/AuthLoading';
 const UserListStack = createStackNavigator({
   UserList: { screen: UserList },
   User: { screen: User },
-  Chat: { screen: Chat }
+  ChatRoomContainer: { screen: ChatRoomContainer }
 });
 
 const ChatListStack = createStackNavigator({
   ChatList: { screen: ChatList },
-  Chat: { screen: Chat }
+  ChatRoomContainer: { screen: ChatRoomContainer }
 });
 
 const ProfileStack = createStackNavigator({
@@ -57,7 +57,7 @@ const TabNav = createBottomTabNavigator(
       }
     }),
     tabBarOptions: {
-      activeTintColor: 'tomato',
+      activeTintColor: '#4963FF',
       inactiveTintColor: 'gray'
     }
   }
