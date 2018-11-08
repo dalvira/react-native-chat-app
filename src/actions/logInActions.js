@@ -28,7 +28,7 @@ export function onPressLogIn(navigation, emailLogIn, passwordLogIn) {
       .signInWithEmailAndPassword(emailLogIn, passwordLogIn)
       .then(user => {
         logInSuccess(dispatch, user);
-        navigation.navigate('ModalStackNavigator');
+        navigation.navigate('TabNav');
       })
       .catch(() => logInFail(dispatch));
   };

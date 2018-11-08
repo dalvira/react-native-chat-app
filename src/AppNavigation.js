@@ -18,6 +18,8 @@ import LogInContainer from './containers/LogInContainer';
 import RegisterContainer from './containers/RegisterContainer';
 import AuthLoading from './components/AuthLoading';
 
+import ModalScreen from './components/common/ModalScreen';
+
 const UserListStack = createStackNavigator({
   UserList: { screen: UserList },
   User: { screen: User },
@@ -84,4 +86,4 @@ const SwitchNav = createSwitchNavigator(
   }
 );
 
-export default TabNav;
+export default SwitchNav;

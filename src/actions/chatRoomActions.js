@@ -1,11 +1,10 @@
 import firebase from 'firebase';
 
+export const MESSAGES_FETCH_SUCCESS = 'MESSAGES_FETCH_SUCCESS';
 export const ON_CHANGE_TEXT = 'ON_CHANGE_TEXT';
-export const ON_CHANGE_EMAIL_REGISTER = 'ON_CHANGE_EMAIL_REGISTER';
-export const ON_CHANGE_PASSWORD_REGISTER = 'ON_CHANGE_PASSWORD_REGISTER';
-export const REGISTER = 'REGISTER';
-export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
-export const REGISTER_FAIL = 'REGISTER_FAIL';
+export const SEND = 'SEND';
+export const SEND_SUCCESS = 'SEND_SUCCESS';
+export const SEND_FAIL = 'SEND_FAIL';
 
 export const messagesFetch = () => {
   return dispatch => {
@@ -32,76 +31,25 @@ export function onChangeText(text) {
 export function onPressSend(messages) {
   return dispatch => {
     dispatch({ type: SEND });
+    const { currentUser } = firebase.auth();
     firebase
-      .auth()
-      .createUserWithEmailAndPassword(emailRegister, passwordRegister)
-      .then(user => {
-        const currentUser = user.user;
-        currentUser.displayName = nameRegister;
-        writeUserData(currentUser.uid, nameRegister, currentUser.email);
-        registerSuccess(dispatch, user);
-        navigation.navigate('ModalStackNavigator');
-      })
-      .catch(() => registerFail(dispatch));
+      .database()
+      .ref(`/users/${currentUser.uid}/messages`)
+      .push({ messages });
+    sendSuccess(dispatch, messages);
   };
 }
 
-export function onChangeEmailRegister(text) {
-  return {
-    type: ON_CHANGE_EMAIL_REGISTER,
-    payload: { text: text }
-  };
-}
-
-export function onChangePasswordRegister(text) {
-  return {
-    type: ON_CHANGE_PASSWORD_REGISTER,
-    payload: { text: text }
-  };
-}
-
-export function onPressRegister(
-  navigation,
-  nameRegister,
-  emailRegister,
-  passwordRegister
-) {
-  return dispatch => {
-    dispatch({ type: REGISTER });
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(emailRegister, passwordRegister)
-      .then(user => {
-        const currentUser = user.user;
-        currentUser.displayName = nameRegister;
-        writeUserData(currentUser.uid, nameRegister, currentUser.email);
-        registerSuccess(dispatch, user);
-        navigation.navigate('ModalStackNavigator');
-      })
-      .catch(() => registerFail(dispatch));
-  };
-}
-
-const writeUserData = (userId, name, email) => {
-  firebase
-    .database()
-    .ref('users/' + userId)
-    .set({
-      name: name,
-      email: email
-    });
-};
-
-const registerSuccess = (dispatch, user) => {
+const sendSuccess = (dispatch, messages) => {
   dispatch({
-    type: REGISTER_SUCCESS,
-    payload: { user: user }
+    type: SEND_SUCCESS,
+    payload: { messages: messages }
   });
 };
 
-const registerFail = dispatch => {
+const sendFail = dispatch => {
   dispatch({
-    type: REGISTER_FAIL,
+    type: SEND_FAIL,
     payload: {}
   });
 };

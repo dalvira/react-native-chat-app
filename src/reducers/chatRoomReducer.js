@@ -8,6 +8,11 @@ import {
 } from '../actions/chatRoomActions';
 
 const initialState = {
+  user: {
+    _id: 1,
+    name: 'Developer',
+    avatar: 'https://placeimg.com/140/140/any'
+  },
   messages: [
     {
       _id: 1,
@@ -20,11 +25,6 @@ const initialState = {
       }
     }
   ],
-  user: {
-    _id: 1,
-    name: 'Developer',
-    avatar: 'https://placeimg.com/140/140/any'
-  },
   text: '',
   isFetching: '',
   lastFetched: '',

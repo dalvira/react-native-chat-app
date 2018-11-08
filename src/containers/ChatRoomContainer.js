@@ -1,92 +1,40 @@
 import React, { Component } from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  TouchableOpacity
-} from 'react-native';
+import {} from 'react-native';
 import { connect } from 'react-redux';
 
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { GiftedChat } from 'react-native-gifted-chat';
+import ChatRoom from '../components/ChatRoom';
 
 import {
   messagesFetch,
   onChangeText,
   onPressSend
-} from '../actions/logInActions';
+} from '../actions/chatRoomActions';
 
-class ChatRoom extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   // this.state = {
-  //   //   messages: []
-  //   // };
-  // }
-
-  componentWillMount() {
-    console.log(this.props);
-    // this.setState({
-    //   messages: [
-    //     {
-    //       _id: 1,
-    //       text: 'Hello developer',
-    //       createdAt: new Date(),
-    //       user: {
-    //         _id: 2,
-    //         name: 'React Native',
-    //         avatar: 'https://placeimg.com/140/140/any'
-    //       }
-    //     }
-    //   ]
-    // });
+class ChatRoomContainer extends Component {
+  constructor(props) {
+    super(props);
   }
-
   render() {
-    const { container } = styles;
-
-    // const onPressSend = messages => {
-    //   this.setState(previousState => ({
-    //     messages: GiftedChat.append(previousState.messages, messages)
-    //   }));
-    // };
-
     return (
-      <View style={container}>
-        <GiftedChat
-          // messages={this.props.messages}
-          // onSend={messages => onPressSend(messages)}
-          user={{
-            _id: 1
-          }}
-          onInputTextChanged={this.props.onChangeText}
-        />
-        {/* <GiftedChat
-          messages={this.state.messages}
-          onSend={messages => onPressSend(messages)}
-          user={{
-            _id: 1
-          }}
-        /> */}
-      </View>
+      <ChatRoom
+        user={this.props.user}
+        text={this.props.text}
+        messages={this.props.messages}
+        messagesFetch={this.props.messagesFetch}
+        onChangeText={this.props.onChangeText}
+        onPressSend={this.props.onPressSend}
+      />
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  }
-});
-
 const mapStateToProps = state => ({
-  // previousState: state.chatRoomReducer,
-  // messages: state.chatRoomReducer.messages,
-  // user: state.chatRoomReducer.user
+  user: state.chatRoomReducer.user,
+  text: state.chatRoomReducer.text,
+  messages: state.chatRoomReducer.messages
 });
 
 export default connect(
   mapStateToProps,
-  { onChangeText, onPressSend }
+  { messagesFetch, onChangeText, onPressSend }
 )(ChatRoom);

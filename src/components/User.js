@@ -4,72 +4,73 @@ import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import ButtonCustom from './common/ButtonCustom';
 
-const User = ({ navigation, photo, name, age, status, distance }) => {
-  const {
-    container,
-    photoContainer,
-    photoStyle,
-    userInfoContainer,
-    nameAgeContainer,
-    statusContainer,
-    distanceContainer,
-    chatButtonContainer,
-    nameStyle,
-    ageStyle,
-    distanceStyle,
-    statusStyle,
-    buttonLabelStyle,
-    usernameContainer,
-    usernameStyle,
-    infoDistanceContainer,
-    body
-  } = styles;
+class User extends Component {
+  render() {
+    const {
+      container,
+      photoContainer,
+      photoStyle,
+      userInfoContainer,
+      nameAgeContainer,
+      statusContainer,
+      distanceContainer,
+      chatButtonContainer,
+      nameStyle,
+      ageStyle,
+      distanceStyle,
+      statusStyle,
+      buttonLabelStyle,
+      usernameContainer,
+      usernameStyle,
+      infoDistanceContainer,
+      body
+    } = styles;
 
-  const onPressChat = () => {
-    navigation.navigate('ChatRoom');
-  };
+    const onPressChat = () => {
+      this.props.navigation.navigate('ChatRoomContainer');
+    };
 
-  return (
-    <View style={container}>
-      <View style={photoContainer}>
-        <Image
-          style={photoStyle}
-          resizeMode="cover"
-          source={require('../img/girlphoto.png')}
-        />
-      </View>
-      <View style={body}>
-        <View style={userInfoContainer}>
-          <View style={usernameContainer}>
-            <Text style={usernameStyle}>@flowerchild43</Text>
-          </View>
-          <View style={infoDistanceContainer}>
-            <View style={nameAgeContainer}>
-              <Text style={nameStyle}>Laura, </Text>
-              <Text style={ageStyle}>27</Text>
+    return (
+      <View style={container}>
+        <View style={photoContainer}>
+          <Image
+            style={photoStyle}
+            resizeMode="cover"
+            source={require('../img/girlphoto.png')}
+          />
+        </View>
+        <View style={body}>
+          <View style={userInfoContainer}>
+            <View style={usernameContainer}>
+              <Text style={usernameStyle}>@flowerchild43</Text>
             </View>
-            <View style={distanceContainer}>
-              <Text style={distanceStyle}>2 mi</Text>
+            <View style={infoDistanceContainer}>
+              <View style={nameAgeContainer}>
+                <Text style={nameStyle}>Laura, </Text>
+                <Text style={ageStyle}>27</Text>
+              </View>
+              <View style={distanceContainer}>
+                <Text style={distanceStyle}>2 mi</Text>
+              </View>
             </View>
           </View>
-        </View>
-        <View style={statusContainer}>
-          <Text style={statusStyle}>"Im hungry"</Text>
-        </View>
-        <View style={chatButtonContainer}>
-          <ButtonCustom label="CHAT" onPress={onPressChat} />
+          <View style={statusContainer}>
+            <Text style={statusStyle}>"Im hungry"</Text>
+          </View>
+          <View style={chatButtonContainer}>
+            <ButtonCustom label="CHAT" onPress={onPressChat} />
+          </View>
         </View>
       </View>
-    </View>
-  );
-};
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center'
-    // backgroundColor: '#4963FF'
   },
   photoContainer: {
     alignSelf: 'stretch',
