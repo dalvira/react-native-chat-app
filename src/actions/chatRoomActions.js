@@ -1,5 +1,6 @@
 import firebase from 'firebase';
 
+export const USER_FETCH_SUCCESS = 'USER_FETCH_SUCCESS';
 export const MESSAGES_FETCH_SUCCESS = 'MESSAGES_FETCH_SUCCESS';
 export const ON_CHANGE_TEXT = 'ON_CHANGE_TEXT';
 export const SEND = 'SEND';
@@ -28,22 +29,30 @@ export function onChangeText(text) {
   };
 }
 
-export function onPressSend(messages) {
+export function onPressSend(message) {
   return dispatch => {
     dispatch({ type: SEND });
     const { currentUser } = firebase.auth();
+    fetchUser(dispatch, currentUser);
     firebase
       .database()
-      .ref(`/users/${currentUser.uid}/messages`)
-      .push({ messages });
-    sendSuccess(dispatch, messages);
+      .ref(`/users/${currentUser.uid}/conversations`)
+      .push({ message });
+    sendSuccess(dispatch, message);
   };
 }
 
-const sendSuccess = (dispatch, messages) => {
+const fetchUser = (dispatch, user) => {
+  dispatch({
+    type: USER_FETCH_SUCCESS,
+    payload: { user: user }
+  });
+};
+
+const sendSuccess = (dispatch, message) => {
   dispatch({
     type: SEND_SUCCESS,
-    payload: { messages: messages }
+    payload: { message: message }
   });
 };
 

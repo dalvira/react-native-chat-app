@@ -20,6 +20,7 @@ const LogIn = ({
     container,
     header,
     title,
+    subtitle,
     inputStyle,
     accountQuestion,
     signUpLink,
@@ -61,7 +62,8 @@ const LogIn = ({
   return (
     <View style={container}>
       <View style={header}>
-        <Text style={title}>pley</Text>
+        <Text style={title}>Villie</Text>
+        <Text style={subtitle}>CHAT</Text>
       </View>
       <View style={styles.body}>
         <View style={styles.textInputContainer}>
@@ -113,13 +115,19 @@ const styles = StyleSheet.create({
   header: {
     flex: 1.5,
     alignItems: 'center',
-    justifyContent: 'center'
+    // justifyContent: 'center',
+    flexDirection: 'row'
   },
   titleContainer: {
     flex: 1
   },
   title: {
     fontSize: 48,
+    fontWeight: 'bold',
+    color: '#F6F8FA'
+  },
+  subtitle: {
+    fontSize: 18,
     fontWeight: 'bold',
     color: '#F6F8FA'
   },
@@ -151,8 +159,8 @@ const styles = StyleSheet.create({
     flex: 0.4,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
-    paddingTop: 10
+    justifyContent: 'center'
+    // paddingTop: 4
   },
   accountQuestion: {
     color: '#FFFFFF',

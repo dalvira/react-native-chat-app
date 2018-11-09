@@ -11,13 +11,13 @@ const ChatRoom = ({
   onPressSend
 }) => {
   handleOnChangeText = text => {
-    console.log(text);
     onChangeText(text);
   };
 
-  handleOnPressSend = messages => {
-    onPressSend(messages);
-    GiftedChat.append({ messages }, messages);
+  handleOnPressSend = message => {
+    // console.log(message);
+    onPressSend(message);
+    // GiftedChat.append(messages, message);
   };
 
   const { container } = styles;
@@ -25,10 +25,10 @@ const ChatRoom = ({
   return (
     <GiftedChat
       messages={messages}
-      onSend={messages => this.handleOnPressSend(messages)}
-      user={{
-        _id: 1
-      }}
+      onSend={message => this.handleOnPressSend(message)}
+      user={user.uid}
+      text={text}
+      onInputTextChanged={text => this.handleOnChangeText(text)}
     />
   );
 };

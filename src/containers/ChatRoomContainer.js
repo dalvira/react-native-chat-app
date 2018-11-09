@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import ChatRoom from '../components/ChatRoom';
 
 import {
+  userFetch,
   messagesFetch,
   onChangeText,
   onPressSend
@@ -36,5 +37,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { messagesFetch, onChangeText, onPressSend }
+  { userFetch, messagesFetch, onChangeText, onPressSend }
 )(ChatRoom);
