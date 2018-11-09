@@ -37,7 +37,6 @@ const SearchBar = ({
         <TextInput
           style={input}
           placeholder="Search"
-          value={value}
           onChangeText={onChangeText}
         />
       </View>

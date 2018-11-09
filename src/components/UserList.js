@@ -4,11 +4,18 @@ import { StyleSheet, Text, View, FlatList } from 'react-native';
 import SearchBar from './common/SearchBar';
 import UserItem from './UserItem';
 
+import {
+  onChangeText,
+  onPressSearch,
+  onPressFilter,
+  onPressUserItem
+} from '../actions/userListActions';
+
 class UserList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchInput: '',
+      text: '',
       photoPath: '../img/girlphoto.png',
       username: '@flowerchild43',
       name: 'Laura',
@@ -18,18 +25,18 @@ class UserList extends Component {
   }
 
   render() {
-    const onPressSearch = () => {
+    const handleText = text => {
+      onChangeText(text);
+    };
+
+    const handleOnPressSearch = () => {
       this.props.navigation.navigate('User');
     };
 
-    const onPressFilter = () => {};
+    const handleOnPressFilter = () => {};
 
-    const onPressUserItem = () => {
+    const handleOnPressUserItem = () => {
       this.props.navigation.navigate('User');
-    };
-
-    const onChangeText = searchInput => {
-      this.setState({ searchInput: searchInput });
     };
 
     const { container, searchBarContainer } = styles;
@@ -38,11 +45,10 @@ class UserList extends Component {
       <View style={container}>
         <View style={searchBarContainer}>
           <SearchBar
-            value={this.state.searchInput}
-            onChangeText={onChangeText}
+            onChangeText={handleText}
             enableFilter={true}
-            onPressSearch={onPressSearch}
-            onPressFilter={onPressFilter}
+            onPressSearch={handleOnPressSearch}
+            onPressFilter={handleOnPressFilter}
           />
         </View>
         <UserItem
@@ -51,7 +57,7 @@ class UserList extends Component {
           name={this.state.name}
           status={this.state.status}
           distance={this.state.distance}
-          onPressUserItem={onPressUserItem}
+          onPressUserItem={handleOnPressUserItem}
         />
       </View>
     );
