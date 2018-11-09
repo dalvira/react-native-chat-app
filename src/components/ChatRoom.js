@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {} from 'react-native';
 import { GiftedChat } from 'react-native-gifted-chat';
 
 const ChatRoom = ({
@@ -15,12 +15,8 @@ const ChatRoom = ({
   };
 
   handleOnPressSend = message => {
-    // console.log(message);
     onPressSend(message);
-    // GiftedChat.append(messages, message);
   };
-
-  const { container } = styles;
 
   return (
     <GiftedChat
@@ -32,11 +28,5 @@ const ChatRoom = ({
     />
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  }
-});
 
 export default ChatRoom;

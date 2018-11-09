@@ -3,7 +3,10 @@ import { connect } from 'react-redux';
 import { StyleSheet, View } from 'react-native';
 
 import {
-  onChangeNameRegister,
+  onChangeDisplayNameRegister,
+  onChangeFirstNameRegister,
+  onChangeLastNameRegister,
+  onChangeDateOfBirth,
   onChangeEmailRegister,
   onChangePasswordRegister,
   onPressRegister
@@ -19,12 +22,14 @@ class RegisterContainer extends React.Component {
     return (
       <View style={styles.container}>
         <Register
-          nameRegister={this.props.nameRegister}
           emailRegister={this.props.emailRegister}
           passwordRegister={this.props.passwordRegister}
           loadingRegister={this.props.loadingRegister}
           errorRegister={this.props.errorRegister}
-          onChangeNameRegister={this.props.onChangeNameRegister}
+          onChangeDisplayNameRegister={this.props.onChangeDisplayNameRegister}
+          onChangeFirstNameRegister={this.props.onChangeFirstNameRegister}
+          onChangeLastNameRegister={this.props.onChangeLastNameRegister}
+          onChangeDateOfBirth={this.props.onChangeDateOfBirth}
           onChangeEmailRegister={this.props.onChangeEmailRegister}
           onChangePasswordRegister={this.props.onChangePasswordRegister}
           onPressRegister={this.props.onPressRegister}
@@ -35,7 +40,10 @@ class RegisterContainer extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  nameRegister: state.registerReducer.nameRegister,
+  displayNameRegister: state.registerReducer.displayNameRegister,
+  firstNameRegister: state.registerReducer.firstNameRegister,
+  lastNameRegister: state.registerReducer.lastNameRegister,
+  dateOfBirth: state.registerReducer.dateOfBirth,
   emailRegister: state.registerReducer.emailRegister,
   passwordRegister: state.registerReducer.passwordRegister,
   loadingRegister: state.registerReducer.loadingRegister,
@@ -51,7 +59,10 @@ const styles = StyleSheet.create({
 export default connect(
   mapStateToProps,
   {
-    onChangeNameRegister,
+    onChangeDisplayNameRegister,
+    onChangeFirstNameRegister,
+    onChangeLastNameRegister,
+    onChangeDateOfBirth,
     onChangeEmailRegister,
     onChangePasswordRegister,
     onPressRegister

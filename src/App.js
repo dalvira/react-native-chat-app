@@ -8,6 +8,7 @@ import store from './store';
 import TabNav from './AppNavigation';
 import LogIn from './components/LogIn';
 import Register from './components/Register';
+import RegisterContainer from './containers/RegisterContainer';
 import User from './components/User';
 import ChatRoomContainer from './containers/ChatRoomContainer';
 import SwitchNav from './AppNavigation';

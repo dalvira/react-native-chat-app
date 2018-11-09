@@ -1,5 +1,8 @@
 import {
-  ON_CHANGE_NAME_REGISTER,
+  ON_CHANGE_DISPLAY_NAME_REGISTER,
+  ON_CHANGE_FIRST_NAME_REGISTER,
+  ON_CHANGE_LAST_NAME_REGISTER,
+  ON_CHANGE_DATE_OF_BIRTH,
   ON_CHANGE_EMAIL_REGISTER,
   ON_CHANGE_PASSWORD_REGISTER,
   REGISTER,
@@ -8,7 +11,10 @@ import {
 } from '../actions/registerActions';
 
 const initialState = {
-  nameRegister: '',
+  displayNameRegister: '',
+  firstNameRegister: '',
+  lastNameRegister: '',
+  datOfBirth: '',
   emailRegister: '',
   passwordRegister: '',
   loadingRegister: '',
@@ -17,10 +23,28 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case ON_CHANGE_NAME_REGISTER: {
+    case ON_CHANGE_DISPLAY_NAME_REGISTER: {
       return {
         ...state,
-        nameRegister: action.payload.text
+        displayNameRegister: action.payload.text
+      };
+    }
+    case ON_CHANGE_FIRST_NAME_REGISTER: {
+      return {
+        ...state,
+        firstNameRegister: action.payload.text
+      };
+    }
+    case ON_CHANGE_LAST_NAME_REGISTER: {
+      return {
+        ...state,
+        lastNameRegister: action.payload.text
+      };
+    }
+    case ON_CHANGE_DATE_OF_BIRTH: {
+      return {
+        ...state,
+        dateOfBirth: action.payload.text
       };
     }
     case ON_CHANGE_EMAIL_REGISTER: {

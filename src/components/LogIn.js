@@ -63,7 +63,7 @@ const LogIn = ({
     <View style={container}>
       <View style={header}>
         <Text style={title}>Villie</Text>
-        <Text style={subtitle}>CHAT</Text>
+        {/* <Text style={subtitle}>CHAT</Text> */}
       </View>
       <View style={styles.body}>
         <View style={styles.textInputContainer}>
