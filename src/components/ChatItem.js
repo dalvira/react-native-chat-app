@@ -34,7 +34,7 @@ const ChatItem = ({
         <View style={photoContainer}>
           <Image
             style={photoStyle}
-            source={require('./common/img/girlphoto2.jpg')}
+            source={require('./common/img/girlphoto.jpg')}
           />
         </View>
         <View style={namesContainer}>

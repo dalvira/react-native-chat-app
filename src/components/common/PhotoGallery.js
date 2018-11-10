@@ -7,23 +7,18 @@ class PhotoGallery extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      images: [
-        require('./img/girlphoto2.jpg'),
-        require('./img/girlphoto.jpg'),
-        require('./img/girlphoto3.jpg')
-      ]
+      // images: [
+      //   require('./img/girlphoto2.jpg'),
+      //   require('./img/girlphoto.jpg'),
+      //   require('./img/girlphoto3.jpg')
+      // ]
     };
   }
   render() {
     return (
       <View style={styles.container}>
         <ImageSlider
-          //   images={[
-          //     'https://placeimg.com/640/640/nature',
-          //     'https://placeimg.com/640/640/people',
-          //     'https://placeimg.com/640/640/animals'
-          //   ]}
-          images={this.state.images}
+          images={this.props.images}
           customSlide={({ index, item, style, width }) => (
             <View key={index} style={[style, styles.photoContainer]}>
               <Image

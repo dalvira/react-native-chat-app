@@ -31,15 +31,16 @@ class User extends Component {
       this.props.navigation.navigate('ChatRoomContainer');
     };
 
+    const images = [
+      require('./common/img/girlphoto.jpg'),
+      require('./common/img/girlphoto2.jpg'),
+      require('./common/img/girlphoto3.jpg')
+    ];
+
     return (
       <View style={container}>
         <View style={photoContainer}>
-          {/* <Image
-            style={photoStyle}
-            resizeMode="cover"
-            source={require('./common/img/girlphoto2.jpg')}
-          /> */}
-          <PhotoGallery />
+          <PhotoGallery images={images} />
         </View>
         <View style={body}>
           <View style={userInfoContainer}>
