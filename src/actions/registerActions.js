@@ -88,7 +88,7 @@ export function onPressRegister(
 const writeUserData = (
   userId,
   displayName,
-  fistName,
+  firstName,
   lastName,
   dateOfBirth,
   email
@@ -99,7 +99,7 @@ const writeUserData = (
     .set({
       email: email,
       displayName: displayName,
-      fistName: fistName,
+      firstName: firstName,
       lastName: lastName,
       dateOfBirth: dateOfBirth
     });

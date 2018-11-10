@@ -6,13 +6,6 @@ import ImageSlider from 'react-native-image-slider';
 class PhotoGallery extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      // images: [
-      //   require('./img/girlphoto2.jpg'),
-      //   require('./img/girlphoto.jpg'),
-      //   require('./img/girlphoto3.jpg')
-      // ]
-    };
   }
   render() {
     return (

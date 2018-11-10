@@ -135,4 +135,4 @@ const SwitchNav = createSwitchNavigator(
   }
 );
 
-export default TabNav;
+export default SwitchNav;

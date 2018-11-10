@@ -1,11 +1,30 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
+import { connect } from 'react-redux';
+
+import {
+  userDataFetch,
+  onPressEditProfile,
+  onPressSignOut
+} from '../actions/profileActions';
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import ButtonCustom from './common/ButtonCustom';
 import PhotoGallery from './common/PhotoGallery';
 
 class Profile extends Component {
+  componentWillMount() {
+    this.props.userDataFetch();
+  }
+
+  handleOnPressEditProfile = () => {
+    alert('Edit Profile');
+  };
+
+  handleSignOut = () => {
+    this.props.onPressSignOut(this.props.navigation);
+  };
+
   render() {
     const {
       container,
@@ -45,11 +64,11 @@ class Profile extends Component {
         <View style={body}>
           <View style={userInfoContainer}>
             <View style={usernameContainer}>
-              <Text style={usernameStyle}>@flowerchild43</Text>
+              <Text style={usernameStyle}>@{this.props.displayName}</Text>
             </View>
             <View style={infoDistanceContainer}>
               <View style={nameAgeContainer}>
-                <Text style={nameStyle}>Laura, </Text>
+                <Text style={nameStyle}>{this.props.firstName}, </Text>
                 <Text style={ageStyle}>27</Text>
               </View>
               <View style={distanceContainer}>
@@ -135,4 +154,16 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Profile;
+const mapStateToProps = state => ({
+  displayName: state.profileReducer.displayName,
+  firstName: state.profileReducer.firstName,
+  lastName: state.profileReducer.lastName,
+  age: state.profileReducer.age,
+  status: state.profileReducer.status,
+  email: state.profileReducer.email
+});
+
+export default connect(
+  mapStateToProps,
+  { userDataFetch, onPressEditProfile, onPressSignOut }
+)(Profile);
