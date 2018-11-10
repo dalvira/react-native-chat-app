@@ -30,7 +30,10 @@ const UserItem = ({
     <TouchableOpacity onPress={onPressUserItem}>
       <View style={container}>
         <View style={photoContainer}>
-          <Image style={photoStyle} source={require('../img/girlphoto.png')} />
+          <Image
+            style={photoStyle}
+            source={require('./common/img/girlphoto2.jpg')}
+          />
         </View>
         <View style={namesContainer}>
           <View style={usernameContainer}>
@@ -53,7 +56,7 @@ const UserItem = ({
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#F1F1F1',
+    backgroundColor: '#FBFDFF',
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
@@ -77,19 +80,19 @@ const styles = StyleSheet.create({
   usernameContainer: {},
   usernameStyle: { fontWeight: '300', fontStyle: 'italic', color: '#818181' },
   nameContainer: {},
-  nameStyle: { fontWeight: '500', color: '#474747' },
+  nameStyle: { fontWeight: '500', color: '#74777B' },
   statusContainer: {
     flex: 2,
     alignItems: 'center',
     justifyContent: 'center'
   },
-  statusStyle: { fontWeight: '400', color: '#474747' },
+  statusStyle: { fontWeight: '400', color: '#74777B' },
   distanceContainer: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center'
   },
-  distanceStyle: { fontWeight: '400', color: '#474747' }
+  distanceStyle: { fontWeight: '400', color: '#74777B' }
 });
 
 export default UserItem;

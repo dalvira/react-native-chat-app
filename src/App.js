@@ -12,6 +12,8 @@ import RegisterContainer from './containers/RegisterContainer';
 import User from './components/User';
 import ChatRoomContainer from './containers/ChatRoomContainer';
 import SwitchNav from './AppNavigation';
+import ChatList from './components/ChatList';
+import PhotoGallery from './components/common/PhotoGallery';
 
 export default class App extends Component {
   componentWillMount() {
@@ -21,7 +23,7 @@ export default class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <SwitchNav />
+        <TabNav />
       </Provider>
     );
   }

@@ -25,7 +25,7 @@ const SearchBar = ({
           style={filterButton}
           name="tune"
           color="#818181"
-          backgroundColor="#F1F1F1"
+          backgroundColor="#FBFDFF"
           onPress={onPressFilter}
         />
       );
@@ -45,7 +45,7 @@ const SearchBar = ({
           style={searchButton}
           name="magnify"
           color="#818181"
-          backgroundColor="#F1F1F1"
+          backgroundColor="#FBFDFF"
           onPress={onPressSearch}
         />
         {filter()}
@@ -56,7 +56,7 @@ const SearchBar = ({
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#F1F1F1',
+    backgroundColor: '#FBFDFF',
     flexDirection: 'row',
     height: 40,
     borderRadius: 4.5

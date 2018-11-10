@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import ButtonCustom from './common/ButtonCustom';
+import PhotoGallery from './common/PhotoGallery';
 
 class User extends Component {
   render() {
@@ -33,11 +34,12 @@ class User extends Component {
     return (
       <View style={container}>
         <View style={photoContainer}>
-          <Image
+          {/* <Image
             style={photoStyle}
             resizeMode="cover"
-            source={require('../img/girlphoto.png')}
-          />
+            source={require('./common/img/girlphoto2.jpg')}
+          /> */}
+          <PhotoGallery />
         </View>
         <View style={body}>
           <View style={userInfoContainer}>
@@ -108,10 +110,10 @@ const styles = StyleSheet.create({
     flex: 1.2,
     alignSelf: 'stretch'
   },
-  nameStyle: { fontSize: 18, color: '#FFFFFF', fontWeight: '700' },
-  ageStyle: { fontSize: 18, color: '#FFFFFF', fontWeight: '500' },
-  distanceStyle: { fontSize: 18, color: '#FFFFFF', fontWeight: '500' },
-  statusStyle: { fontSize: 18, color: '#FFFFFF', fontWeight: '500' },
+  nameStyle: { fontSize: 18, color: '#74777B', fontWeight: '700' },
+  ageStyle: { fontSize: 18, color: '#74777B', fontWeight: '500' },
+  distanceStyle: { fontSize: 18, color: '#74777B', fontWeight: '500' },
+  statusStyle: { fontSize: 18, color: '#74777B', fontWeight: '500' },
   buttonLabelStyle: {},
   usernameContainer: {
     alignSelf: 'stretch'
@@ -119,11 +121,11 @@ const styles = StyleSheet.create({
   usernameStyle: {
     fontWeight: '300',
     fontSize: 18,
-    color: '#FFFFFF',
+    color: '#818181',
     fontStyle: 'italic'
   },
   body: {
-    backgroundColor: '#4963FF',
+    backgroundColor: '#FBFDFF',
     flex: 3.5,
     alignSelf: 'stretch',
     shadowOffset: { width: 1, height: -2 },

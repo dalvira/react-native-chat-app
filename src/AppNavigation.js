@@ -21,18 +21,65 @@ import AuthLoading from './components/AuthLoading';
 import ModalScreen from './components/common/ModalScreen';
 
 const UserListStack = createStackNavigator({
-  UserList: { screen: UserList },
-  User: { screen: User },
+  UserList: {
+    screen: UserList,
+    navigationOptions: {
+      title: 'Discover',
+      headerStyle: {
+        backgroundColor: '#4963FF'
+      },
+      headerTitleStyle: {
+        color: '#FBFDFF'
+      }
+    }
+  },
+  User: {
+    screen: User,
+    navigationOptions: {
+      title: 'User',
+      headerStyle: {
+        backgroundColor: '#4963FF'
+      },
+      headerTintColor: '#FBFDFF',
+      headerTitleStyle: {
+        color: '#FBFDFF'
+      }
+    }
+  },
   ChatRoomContainer: { screen: ChatRoomContainer }
 });
 
 const ChatListStack = createStackNavigator({
-  ChatList: { screen: ChatList },
+  ChatList: {
+    screen: ChatList,
+    navigationOptions: {
+      title: 'Messages',
+      headerStyle: {
+        backgroundColor: '#4963FF'
+      },
+      headerTintColor: '#FBFDFF',
+      headerTitleStyle: {
+        color: '#FBFDFF'
+      }
+    }
+  },
   ChatRoomContainer: { screen: ChatRoomContainer }
 });
 
 const ProfileStack = createStackNavigator({
-  Profile: { screen: Profile }
+  Profile: {
+    screen: Profile,
+    navigationOptions: {
+      title: 'Profile',
+      headerStyle: {
+        backgroundColor: '#4963FF'
+      },
+      headerTintColor: '#FBFDFF',
+      headerTitleStyle: {
+        color: '#FBFDFF'
+      }
+    }
+  }
 });
 
 const TabNav = createBottomTabNavigator(
@@ -60,7 +107,9 @@ const TabNav = createBottomTabNavigator(
     }),
     tabBarOptions: {
       activeTintColor: '#4963FF',
-      inactiveTintColor: 'gray'
+      inactiveTintColor: 'gray',
+      showLabel: false,
+      style: {}
     }
   }
 );
@@ -86,4 +135,4 @@ const SwitchNav = createSwitchNavigator(
   }
 );
 
-export default SwitchNav;
+export default TabNav;

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { connect } from 'react-redux';
 
 import SearchBar from './common/SearchBar';
 import UserItem from './UserItem';
@@ -15,7 +16,6 @@ class UserList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: '',
       photoPath: '../img/girlphoto.png',
       username: '@flowerchild43',
       name: 'Laura',
@@ -25,12 +25,13 @@ class UserList extends Component {
   }
 
   render() {
-    const handleText = text => {
-      onChangeText(text);
+    const handleText = input => {
+      onChangeText(input);
     };
 
     const handleOnPressSearch = () => {
-      this.props.navigation.navigate('User');
+      console.log('input: ', this.props.input);
+      onPressSearch(this.props.navigation, this.props.input);
     };
 
     const handleOnPressFilter = () => {};
@@ -77,4 +78,12 @@ const styles = StyleSheet.create({
   }
 });
 
-export default UserList;
+const mapStateToProps = state => ({
+  input: state.userListReducer.input,
+  searchQuery: state.userListReducer.searchQuery
+});
+
+export default connect(
+  mapStateToProps,
+  { onChangeText, onPressSearch, onPressFilter, onPressUserItem }
+)(UserList);

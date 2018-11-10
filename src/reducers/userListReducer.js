@@ -6,6 +6,7 @@ import {
 } from '../actions/userListActions';
 
 const initialState = {
+  input: '',
   searchQuery: ''
 };
 
@@ -14,13 +15,13 @@ export default function(state = initialState, action) {
     case ON_CHANGE_TEXT: {
       return {
         ...state,
-        searchQuery: action.payload.text
+        text: action.payload.input
       };
     }
     case ON_PRESS_SEARCH: {
       return {
         ...state,
-        user: action.payload.user
+        searchQuery: action.payload.searchQuery
       };
     }
     case ON_PRESS_FILTER: {

@@ -20,8 +20,10 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#4963FF',
     borderRadius: 10,
+    borderWidth: 0.5,
+    borderColor: '#3B4EC2',
     marginLeft: 30,
     marginRight: 30,
     shadowOffset: { width: 1, height: 3 },
@@ -30,7 +32,7 @@ const styles = StyleSheet.create({
   },
   labelStyle: {
     fontSize: 20,
-    color: '#26358A',
+    color: '#FFFFFF',
     fontWeight: 'bold'
   }
 });

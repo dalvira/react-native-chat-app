@@ -5,17 +5,20 @@ export const ON_PRESS_SEARCH = 'ON_PRESS_SEARCH';
 export const ON_PRESS_FILTER = 'ON_PRESS_FILTER';
 export const ON_PRESS_USER_ITEM = 'ON_PRESS_USER_ITEM';
 
-export function onChangeText(text) {
+export function onChangeText(input) {
+  console.log(input);
   return {
     type: ON_CHANGE_TEXT,
-    payload: { text: text }
+    payload: { input: input }
   };
 }
 
-export function onPressSearch(user) {
+export function onPressSearch(navigation, input) {
+  console.log(input);
+  navigation.navigate('User');
   return {
     type: ON_PRESS_SEARCH,
-    payload: { user: user }
+    payload: { searchQuery: input }
   };
 }
 
