@@ -2,6 +2,7 @@ import firebase from 'firebase';
 
 export const ON_CHANGE_TEXT = 'ON_CHANGE_TEXT';
 export const ON_PRESS_SEARCH = 'ON_PRESS_SEARCH';
+export const USER_SEARCH_FETCH_SUCCESS = 'USER_SEARCH_FETCH_SUCCESS';
 export const ON_PRESS_FILTER = 'ON_PRESS_FILTER';
 export const ON_PRESS_USER_ITEM = 'ON_PRESS_USER_ITEM';
 
@@ -13,11 +14,27 @@ export function onChangeText(text) {
 }
 
 export function onPressSearch(navigation, searchQuery) {
-  console.log(searchQuery);
-  navigation.navigate('User');
-  return {
-    type: ON_PRESS_SEARCH,
-    payload: { searchQuery: searchQuery }
+  const { currentUser } = firebase.auth;
+  // console.log(
+  //   firebase
+  //     .database()
+  //     .ref('users')
+  //     .orderByChild('displayName')
+  //     .equalTo(searchQuery)
+  // );
+  return dispatch => {
+    firebase
+      .database()
+      .ref('users')
+      .orderByChild('displayName')
+      .equalTo(searchQuery)
+      .once('value', function(snapshot) {
+        dispatch({
+          type: USER_SEARCH_FETCH_SUCCESS,
+          payload: { snapshot: snapshot.val() }
+        });
+      });
+    navigation.navigate('User');
   };
 }
 

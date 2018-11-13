@@ -42,6 +42,7 @@ const SearchBar = ({
           style={input}
           placeholder="Search"
           onChangeText={onChangeText}
+          autoCapitalize="none"
         />
       </View>
       <View style={buttonsContainer}>

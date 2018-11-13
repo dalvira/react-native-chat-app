@@ -6,6 +6,8 @@ import ButtonCustom from './common/ButtonCustom';
 import PhotoGallery from './common/PhotoGallery';
 
 class User extends Component {
+  componentWillMount() {}
+
   render() {
     const {
       container,

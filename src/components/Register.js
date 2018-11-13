@@ -66,14 +66,6 @@ const Register = ({
   };
 
   handleRegister = () => {
-    console.log(
-      displayNameRegister,
-      firstNameRegister,
-      lastNameRegister,
-      dateOfBirth,
-      emailRegister,
-      passwordRegister
-    );
     onPressRegister(
       navigation,
       displayNameRegister,
