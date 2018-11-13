@@ -25,13 +25,12 @@ class UserList extends Component {
   }
 
   render() {
-    const handleText = input => {
-      onChangeText(input);
+    const handleText = text => {
+      this.props.onChangeText(text);
     };
 
     const handleOnPressSearch = () => {
-      console.log('input: ', this.props.input);
-      onPressSearch(this.props.navigation, this.props.input);
+      this.props.onPressSearch(this.props.navigation, this.props.text);
     };
 
     const handleOnPressUserItem = () => {
@@ -75,8 +74,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-  input: state.userListReducer.input,
-  searchQuery: state.userListReducer.searchQuery
+  text: state.userListReducer.text
 });
 
 export default connect(

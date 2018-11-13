@@ -24,8 +24,14 @@ class User extends Component {
       usernameContainer,
       usernameStyle,
       infoDistanceContainer,
-      body
+      body,
+      optionsButtonContainer,
+      optionsButton
     } = styles;
+
+    const handleOnPressOptions = () => {
+      console.log('Options');
+    };
 
     const onPressChat = () => {
       this.props.navigation.navigate('ChatRoomContainer');
@@ -41,6 +47,15 @@ class User extends Component {
       <View style={container}>
         <View style={photoContainer}>
           <PhotoGallery images={images} />
+        </View>
+        <View style={optionsButtonContainer}>
+          <Icon.Button
+            style={optionsButton}
+            name="dots-vertical"
+            backgroundColor="transparent"
+            size={30}
+            onPress={handleOnPressOptions}
+          />
         </View>
         <View style={body}>
           <View style={userInfoContainer}>
@@ -84,6 +99,12 @@ const styles = StyleSheet.create({
     width: undefined,
     height: undefined
   },
+  optionsButtonContainer: {
+    position: 'absolute',
+    top: 10,
+    left: 335
+  },
+  optionsButton: {},
   userInfoContainer: {
     flex: 1.3,
     alignSelf: 'stretch',

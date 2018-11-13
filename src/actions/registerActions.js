@@ -69,17 +69,25 @@ export function onPressRegister(
       .createUserWithEmailAndPassword(emailRegister, passwordRegister)
       .then(user => {
         const currentUser = user.user;
-        currentUser.displayName = displayNameRegister;
-        writeUserData(
-          currentUser.uid,
-          displayNameRegister,
-          firstNameRegister,
-          lastNameRegister,
-          dateOfBirth,
-          currentUser.email
-        );
-        registerSuccess(dispatch, user);
-        navigation.navigate('TabNav');
+        currentUser
+          .updateProfile({
+            displayName: displayNameRegister
+          })
+          .then(function() {
+            writeUserData(
+              currentUser.uid,
+              displayNameRegister,
+              firstNameRegister,
+              lastNameRegister,
+              dateOfBirth,
+              currentUser.email
+            );
+            registerSuccess(dispatch, user);
+            navigation.navigate('TabNav');
+          })
+          .catch(function(error) {
+            // An error happened.
+          });
       })
       .catch(() => registerFail(dispatch));
   };

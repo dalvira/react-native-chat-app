@@ -6,7 +6,7 @@ import {
 } from '../actions/userListActions';
 
 const initialState = {
-  input: '',
+  text: '',
   searchQuery: ''
 };
 
@@ -15,7 +15,7 @@ export default function(state = initialState, action) {
     case ON_CHANGE_TEXT: {
       return {
         ...state,
-        text: action.payload.input
+        text: action.payload.text
       };
     }
     case ON_PRESS_SEARCH: {
