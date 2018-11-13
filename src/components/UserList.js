@@ -34,8 +34,6 @@ class UserList extends Component {
       onPressSearch(this.props.navigation, this.props.input);
     };
 
-    const handleOnPressFilter = () => {};
-
     const handleOnPressUserItem = () => {
       this.props.navigation.navigate('User');
     };
@@ -47,9 +45,7 @@ class UserList extends Component {
         <View style={searchBarContainer}>
           <SearchBar
             onChangeText={handleText}
-            enableFilter={true}
             onPressSearch={handleOnPressSearch}
-            onPressFilter={handleOnPressFilter}
           />
         </View>
         <UserItem
@@ -73,8 +69,8 @@ const styles = StyleSheet.create({
   searchBarContainer: {
     paddingTop: 10,
     paddingBottom: 10,
-    paddingLeft: 6,
-    paddingRight: 33
+    paddingLeft: 10,
+    paddingRight: 10
   }
 });
 

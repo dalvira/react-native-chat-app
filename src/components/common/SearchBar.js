@@ -15,19 +15,23 @@ const SearchBar = ({
     inputContainer,
     input,
     buttonsContainer,
+    searchButtonContainer,
     searchButton,
+    filterButtonContainer,
     filterButton
   } = styles;
   const filter = () => {
     if (enableFilter) {
       return (
-        <Icon.Button
-          style={filterButton}
-          name="tune"
-          color="#818181"
-          backgroundColor="#FBFDFF"
-          onPress={onPressFilter}
-        />
+        <View style={filterButtonContainer}>
+          <Icon.Button
+            style={filterButton}
+            name="tune"
+            color="#818181"
+            backgroundColor="#FBFDFF"
+            onPress={onPressFilter}
+          />
+        </View>
       );
     }
   };
@@ -41,13 +45,15 @@ const SearchBar = ({
         />
       </View>
       <View style={buttonsContainer}>
-        <Icon.Button
-          style={searchButton}
-          name="magnify"
-          color="#818181"
-          backgroundColor="#FBFDFF"
-          onPress={onPressSearch}
-        />
+        <View style={searchButtonContainer}>
+          <Icon.Button
+            style={searchButton}
+            name="magnify"
+            color="#818181"
+            backgroundColor="#FBFDFF"
+            onPress={onPressSearch}
+          />
+        </View>
         {filter()}
       </View>
     </View>
@@ -63,21 +69,24 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     flex: 4,
-    paddingLeft: 15
+    paddingLeft: 20
   },
   input: {
     height: 40
   },
   buttonsContainer: {
+    paddingLeft: 20,
     flex: 1,
     flexDirection: 'row'
   },
-  searchButton: {
+  searchButtonContainer: {
     flex: 1
   },
-  filterButton: {
+  searchButton: {},
+  filterButtonContainer: {
     flex: 1
-  }
+  },
+  filterButton: {}
 });
 
 export default SearchBar;
