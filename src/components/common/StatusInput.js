@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     borderWidth: 0.8,
     borderColor: '#74777B',
     borderRadius: 10,
-    marginRight: 15
+    marginRight: 30
   },
   updateButton: {
     flex: 1,

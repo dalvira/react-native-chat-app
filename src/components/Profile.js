@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  Image,
+  Switch
+} from 'react-native';
 import { connect } from 'react-redux';
 
 import {
@@ -25,20 +32,24 @@ class Profile extends Component {
       container,
       photoContainer,
       photoStyle,
+      userInfoAndDiscover,
       userInfoContainer,
+      discoverContainer,
+      discoverLabelContainer,
+      discoverLabel,
+      dashboardContainer,
+      updateStatusContainer,
       nameAgeContainer,
       statusContainer,
-      distanceContainer,
+      switchContainer,
+      switchStyle,
       chatButtonContainer,
       nameStyle,
       ageStyle,
-      distanceStyle,
       statusStyle,
       buttonLabelStyle,
       usernameContainer,
-      usernameStyle,
-      infoDistanceContainer,
-      body
+      usernameStyle
     } = styles;
 
     const images = [
@@ -49,10 +60,6 @@ class Profile extends Component {
 
     const handleOnPressEditProfile = () => {
       alert('Edit Profile');
-    };
-
-    const handleSignOut = () => {
-      this.props.onPressSignOut(this.props.navigation);
     };
 
     const handleOnChangeText = text => {
@@ -68,25 +75,30 @@ class Profile extends Component {
         <View style={photoContainer}>
           <PhotoGallery images={images} />
         </View>
-        <View style={body}>
-          <View style={userInfoContainer}>
-            <View style={usernameContainer}>
-              <Text style={usernameStyle}>@{this.props.displayName}</Text>
-            </View>
-            <View style={infoDistanceContainer}>
+        <View style={dashboardContainer}>
+          <View style={userInfoAndDiscover}>
+            <View style={userInfoContainer}>
+              <View style={usernameContainer}>
+                <Text style={usernameStyle}>@{this.props.displayName}</Text>
+              </View>
               <View style={nameAgeContainer}>
                 <Text style={nameStyle}>{this.props.firstName}, </Text>
                 <Text style={ageStyle}>27</Text>
               </View>
-              <View style={distanceContainer}>
-                <Text style={distanceStyle}>2 mi</Text>
+            </View>
+            <View style={discoverContainer}>
+              <View style={discoverLabelContainer}>
+                <Text style={discoverLabel}>Discoverable</Text>
+              </View>
+              <View style={switchContainer}>
+                <Switch style={switchStyle} />
               </View>
             </View>
           </View>
           <View style={statusContainer}>
             <Text style={statusStyle}>{this.props.status}</Text>
           </View>
-          <View style={chatButtonContainer}>
+          <View style={updateStatusContainer}>
             <StatusInput
               onChangeText={handleOnChangeText}
               onPressUpdateStatus={handleOnPressUpdateStatus}
@@ -107,43 +119,63 @@ const styles = StyleSheet.create({
   },
   photoContainer: {
     alignSelf: 'stretch',
-    flex: 7
+    flex: 2
   },
   photoStyle: {
     flex: 1,
     width: undefined,
     height: undefined
   },
-  userInfoContainer: {
-    flex: 1.3,
+  dashboardContainer: {
+    backgroundColor: '#FBFDFF',
+    flex: 1,
     alignSelf: 'stretch',
+    shadowOffset: { width: 1, height: -2 },
+    shadowColor: '#000000',
+    shadowOpacity: 0.3
+  },
+  userInfoAndDiscover: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  userInfoContainer: {
+    flex: 2,
     marginLeft: 25,
     paddingTop: 10
   },
-  infoDistanceContainer: {
+  nameAgeContainer: { paddingTop: 5, flexDirection: 'row' },
+  discoverContainer: {
     flex: 1,
-    flexDirection: 'row',
-    paddingTop: 5
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingTop: 16,
+    marginRight: 4
   },
-  nameAgeContainer: {
-    flex: 1,
-    flexDirection: 'row'
+  discoverLabelContainer: {},
+  discoverLabel: {
+    fontSize: 14,
+    color: '#74777B',
+    fontWeight: '500'
   },
-  distanceContainer: {
+  switchContainer: {
     flex: 1,
-    alignItems: 'center'
+    paddingTop: 1
   },
   statusContainer: {
     flex: 1,
+    justifyContent: 'center',
     alignItems: 'center'
   },
-  chatButtonContainer: {
-    flex: 1.2,
-    alignSelf: 'stretch'
+  updateStatusContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   nameStyle: { fontSize: 18, color: '#74777B', fontWeight: '700' },
   ageStyle: { fontSize: 18, color: '#74777B', fontWeight: '500' },
-  distanceStyle: { fontSize: 18, color: '#74777B', fontWeight: '500' },
+
   statusStyle: { fontSize: 18, color: '#74777B', fontWeight: '500' },
   buttonLabelStyle: {},
   usernameContainer: {
@@ -154,14 +186,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: '#818181',
     fontStyle: 'italic'
-  },
-  body: {
-    backgroundColor: '#FBFDFF',
-    flex: 3.5,
-    alignSelf: 'stretch',
-    shadowOffset: { width: 1, height: -2 },
-    shadowColor: '#000000',
-    shadowOpacity: 0.3
   }
 });
 
