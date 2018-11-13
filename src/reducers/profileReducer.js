@@ -1,5 +1,6 @@
 import {
   USER_DATA_FETCH_SUCCESS,
+  TOGGLE_DISCOVERABLE,
   ON_CHANGE_TEXT,
   STATUS_UPDATE,
   STATUS_UPDATE_SUCCESS,
@@ -10,7 +11,7 @@ import {
 } from '../actions/profileActions';
 
 const initialState = {
-  myProfile: false,
+  discoverable: false,
   displayName: '',
   firstName: '',
   lastName: '',
@@ -30,6 +31,13 @@ export default function(state = initialState, action) {
         displayName: action.payload.snapshot.displayName,
         firstName: action.payload.snapshot.firstName,
         status: action.payload.snapshot.status
+      };
+    }
+    case TOGGLE_DISCOVERABLE: {
+      console.log(action.payload.discoverable);
+      return {
+        ...state,
+        discoverable: action.payload.discoverable
       };
     }
     case ON_CHANGE_TEXT: {

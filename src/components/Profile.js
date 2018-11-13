@@ -11,14 +11,13 @@ import { connect } from 'react-redux';
 
 import {
   userDataFetch,
+  toggleDiscoverable,
   onChangeText,
   onPressUpdateStatus,
   onPressEditProfile,
   onPressSignOut
 } from '../actions/profileActions';
 
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import ButtonCustom from './common/ButtonCustom';
 import PhotoGallery from './common/PhotoGallery';
 import StatusInput from './common/StatusInput';
 
@@ -43,11 +42,9 @@ class Profile extends Component {
       statusContainer,
       switchContainer,
       switchStyle,
-      chatButtonContainer,
       nameStyle,
       ageStyle,
       statusStyle,
-      buttonLabelStyle,
       usernameContainer,
       usernameStyle
     } = styles;
@@ -60,6 +57,10 @@ class Profile extends Component {
 
     const handleOnPressEditProfile = () => {
       alert('Edit Profile');
+    };
+
+    const handleToggleDiscoverable = value => {
+      this.props.toggleDiscoverable(value);
     };
 
     const handleOnChangeText = text => {
@@ -91,7 +92,11 @@ class Profile extends Component {
                 <Text style={discoverLabel}>Discoverable</Text>
               </View>
               <View style={switchContainer}>
-                <Switch style={switchStyle} />
+                <Switch
+                  style={switchStyle}
+                  onValueChange={handleToggleDiscoverable}
+                  value={this.props.discoverable}
+                />
               </View>
             </View>
           </View>
@@ -163,6 +168,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 1
   },
+  switchStyle: {},
   statusContainer: {
     flex: 1,
     justifyContent: 'center',
@@ -175,7 +181,6 @@ const styles = StyleSheet.create({
   },
   nameStyle: { fontSize: 18, color: '#74777B', fontWeight: '700' },
   ageStyle: { fontSize: 18, color: '#74777B', fontWeight: '500' },
-
   statusStyle: { fontSize: 18, color: '#74777B', fontWeight: '500' },
   buttonLabelStyle: {},
   usernameContainer: {
@@ -190,6 +195,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
+  discoverable: state.profileReducer.discoverable,
   displayName: state.profileReducer.displayName,
   firstName: state.profileReducer.firstName,
   lastName: state.profileReducer.lastName,
@@ -203,6 +209,7 @@ export default connect(
   mapStateToProps,
   {
     userDataFetch,
+    toggleDiscoverable,
     onChangeText,
     onPressUpdateStatus,
     onPressEditProfile,

@@ -1,6 +1,7 @@
 import firebase from 'firebase';
 
 export const USER_DATA_FETCH_SUCCESS = 'USER_DATA_FETCH_SUCCESS';
+export const TOGGLE_DISCOVERABLE = 'TOGGLE_DISCOVERABLE';
 export const ON_CHANGE_TEXT = 'ON_CHANGE_TEXT';
 export const STATUS_UPDATE = 'STATUS_UPDATE';
 export const STATUS_UPDATE_SUCCESS = 'STATUS_UPDATE_SUCCESS';
@@ -21,6 +22,13 @@ export function userDataFetch() {
           payload: { snapshot: snapshot.val() }
         });
       });
+  };
+}
+
+export function toggleDiscoverable(value) {
+  return {
+    type: TOGGLE_DISCOVERABLE,
+    payload: { discoverable: value }
   };
 }
 
