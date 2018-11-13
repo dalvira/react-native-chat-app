@@ -23,7 +23,7 @@ const StatusInput = ({ value, onChangeText, onPressUpdateStatus }) => {
       <View style={inputContainer}>
         <TextInput
           style={input}
-          placeholder="Update your status..."
+          placeholder="What's going on?"
           onChangeText={onChangeText}
           value={value}
         />
@@ -36,13 +36,6 @@ const StatusInput = ({ value, onChangeText, onPressUpdateStatus }) => {
         >
           <Text style={buttonLabelStyle}>Update</Text>
         </TouchableOpacity>
-        {/* <Icon.Button
-          style={updateButton}
-          name="magnify"
-          color="#818181"
-          backgroundColor="#FBFDFF"
-          onPress={onPressUpdateStatus}
-        /> */}
       </View>
     </View>
   );
@@ -59,8 +52,6 @@ const styles = StyleSheet.create({
   inputContainer: {
     flex: 4,
     marginLeft: 30
-    // borderWidth: 0.5,
-    // borderColor: '#74777B'
   },
   input: {
     height: 40,

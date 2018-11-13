@@ -6,7 +6,7 @@ export const ON_CHANGE_TEXT = 'ON_CHANGE_TEXT';
 export const STATUS_UPDATE = 'STATUS_UPDATE';
 export const STATUS_UPDATE_SUCCESS = 'STATUS_UPDATE_SUCCESS';
 export const ON_PRESS_UPDATE_STATUS = 'ON_PRESS_UPDATE_STATUS';
-export const ON_PRESS_EDIT_PROFILE = 'ON_PRESS_EDIT_PROFILE';
+export const ON_PRESS_SETTINGS = 'ON_PRESS_SETTINGS';
 export const SIGN_OUT_SUCCESS = 'SIGN_OUT_SUCCESS';
 export const SIGN_OUT_FAIL = 'SIGN_OUT_FAIL';
 
@@ -60,9 +60,9 @@ const statusUpdateSuccess = (dispatch, status) => {
   });
 };
 
-export function onPressEditProfile() {
+export function onPressSettings(navigation) {
   return {
-    type: ON_PRESS_EDIT_PROFILE,
+    type: ON_PRESS_SETTINGS,
     payload: {}
   };
 }

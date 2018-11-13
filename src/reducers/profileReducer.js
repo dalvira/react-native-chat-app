@@ -5,7 +5,7 @@ import {
   STATUS_UPDATE,
   STATUS_UPDATE_SUCCESS,
   ON_PRESS_UPDATE_STATUS,
-  ON_PRESS_EDIT_PROFILE,
+  ON_PRESS_SETTINGS,
   SIGN_OUT_SUCCESS,
   SIGN_OUT_FAIL
 } from '../actions/profileActions';
@@ -34,17 +34,21 @@ export default function(state = initialState, action) {
       };
     }
     case TOGGLE_DISCOVERABLE: {
-      console.log(action.payload.discoverable);
       return {
         ...state,
         discoverable: action.payload.discoverable
       };
     }
     case ON_CHANGE_TEXT: {
-      console.log(action.payload.text);
       return {
         ...state,
         text: action.payload.text
+      };
+    }
+    case ON_PRESS_SETTINGS: {
+      console.log('Settings');
+      return {
+        ...state
       };
     }
     case STATUS_UPDATE: {

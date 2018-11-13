@@ -9,12 +9,14 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
 import {
   userDataFetch,
   toggleDiscoverable,
   onChangeText,
   onPressUpdateStatus,
-  onPressEditProfile,
+  onPressSettings,
   onPressSignOut
 } from '../actions/profileActions';
 
@@ -31,6 +33,8 @@ class Profile extends Component {
       container,
       photoContainer,
       photoStyle,
+      settingsButtonContainer,
+      settingsButton,
       userInfoAndDiscover,
       userInfoContainer,
       discoverContainer,
@@ -55,8 +59,8 @@ class Profile extends Component {
       require('./common/img/guyphoto3.jpg')
     ];
 
-    const handleOnPressEditProfile = () => {
-      alert('Edit Profile');
+    const handleOnPressSettings = () => {
+      this.props.onPressSettings(this.props.navigation);
     };
 
     const handleToggleDiscoverable = value => {
@@ -75,6 +79,14 @@ class Profile extends Component {
       <View style={container}>
         <View style={photoContainer}>
           <PhotoGallery images={images} />
+        </View>
+        <View style={settingsButtonContainer}>
+          <Icon.Button
+            style={settingsButton}
+            name="settings"
+            backgroundColor="transparent"
+            onPress={handleOnPressSettings}
+          />
         </View>
         <View style={dashboardContainer}>
           <View style={userInfoAndDiscover}>
@@ -131,6 +143,12 @@ const styles = StyleSheet.create({
     width: undefined,
     height: undefined
   },
+  settingsButtonContainer: {
+    position: 'absolute',
+    top: 10,
+    left: 330
+  },
+  settingsButton: {},
   dashboardContainer: {
     backgroundColor: '#FBFDFF',
     flex: 1,
@@ -212,7 +230,7 @@ export default connect(
     toggleDiscoverable,
     onChangeText,
     onPressUpdateStatus,
-    onPressEditProfile,
+    onPressSettings,
     onPressSignOut
   }
 )(Profile);
