@@ -1,5 +1,9 @@
 import {
   USER_DATA_FETCH_SUCCESS,
+  ON_CHANGE_TEXT,
+  STATUS_UPDATE,
+  STATUS_UPDATE_SUCCESS,
+  ON_PRESS_UPDATE_STATUS,
   ON_PRESS_EDIT_PROFILE,
   SIGN_OUT_SUCCESS,
   SIGN_OUT_FAIL
@@ -12,6 +16,7 @@ const initialState = {
   lastName: '',
   age: '',
   status: '',
+  text: '',
   email: '',
   loading: '',
   error: ''
@@ -20,11 +25,27 @@ const initialState = {
 export default function(state = initialState, action) {
   switch (action.type) {
     case USER_DATA_FETCH_SUCCESS: {
-      console.log(action.payload.snapshot);
       return {
         ...state,
         displayName: action.payload.snapshot.displayName,
         firstName: action.payload.snapshot.firstName
+      };
+    }
+    case ON_CHANGE_TEXT: {
+      return {
+        ...state,
+        text: action.payload.text
+      };
+    }
+    case STATUS_UPDATE: {
+      return {
+        ...state
+      };
+    }
+    case STATUS_UPDATE_SUCCESS: {
+      return {
+        ...state,
+        status: action.payload.status
       };
     }
     case SIGN_OUT_SUCCESS: {

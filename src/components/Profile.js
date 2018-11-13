@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 
 import {
   userDataFetch,
+  onChangeText,
+  onPressUpdateStatus,
   onPressEditProfile,
   onPressSignOut
 } from '../actions/profileActions';
@@ -11,19 +13,12 @@ import {
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import ButtonCustom from './common/ButtonCustom';
 import PhotoGallery from './common/PhotoGallery';
+import StatusInput from './common/StatusInput';
 
 class Profile extends Component {
   componentWillMount() {
     this.props.userDataFetch();
   }
-
-  handleOnPressEditProfile = () => {
-    alert('Edit Profile');
-  };
-
-  handleSignOut = () => {
-    this.props.onPressSignOut(this.props.navigation);
-  };
 
   render() {
     const {
@@ -46,15 +41,27 @@ class Profile extends Component {
       body
     } = styles;
 
-    const onPressChat = () => {
-      this.props.navigation.navigate('ChatRoomContainer');
-    };
-
     const images = [
       require('./common/img/guyphoto.jpg'),
       require('./common/img/guyphoto2.jpg'),
       require('./common/img/guyphoto3.jpg')
     ];
+
+    const handleOnPressEditProfile = () => {
+      alert('Edit Profile');
+    };
+
+    const handleSignOut = () => {
+      this.props.onPressSignOut(this.props.navigation);
+    };
+
+    const handleOnChangeText = text => {
+      this.props.onChangeText(text);
+    };
+
+    const handleOnPressUpdateStatus = () => {
+      this.props.onPressUpdateStatus(this.props.text);
+    };
 
     return (
       <View style={container}>
@@ -80,7 +87,10 @@ class Profile extends Component {
             <Text style={statusStyle}>"Im hungry"</Text>
           </View>
           <View style={chatButtonContainer}>
-            <ButtonCustom label="CHAT" onPress={onPressChat} />
+            <StatusInput
+              onChangeText={handleOnChangeText}
+              onPressUpdateStatus={handleOnPressUpdateStatus}
+            />
           </View>
         </View>
       </View>
@@ -160,10 +170,17 @@ const mapStateToProps = state => ({
   lastName: state.profileReducer.lastName,
   age: state.profileReducer.age,
   status: state.profileReducer.status,
+  text: state.profileReducer.text,
   email: state.profileReducer.email
 });
 
 export default connect(
   mapStateToProps,
-  { userDataFetch, onPressEditProfile, onPressSignOut }
+  {
+    userDataFetch,
+    onChangeText,
+    onPressUpdateStatus,
+    onPressEditProfile,
+    onPressSignOut
+  }
 )(Profile);
