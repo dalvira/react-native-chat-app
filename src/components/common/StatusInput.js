@@ -1,33 +1,48 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  TouchableOpacity
+} from 'react-native';
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const StatusInput = ({ onChangeText, onPressUpdateStatus }) => {
+const StatusInput = ({ value, onChangeText, onPressUpdateStatus }) => {
   const {
     container,
     inputContainer,
     input,
     buttonsContainer,
-    updateButton
+    updateButton,
+    buttonLabelStyle
   } = styles;
   return (
     <View style={container}>
       <View style={inputContainer}>
         <TextInput
           style={input}
-          placeholder="Search"
+          placeholder="Update your status..."
           onChangeText={onChangeText}
+          value={value}
         />
       </View>
       <View style={buttonsContainer}>
-        <Icon.Button
+        <TouchableOpacity
+          style={updateButton}
+          backgroundColor="#FBFDFF"
+          onPress={onPressUpdateStatus}
+        >
+          <Text style={buttonLabelStyle}>Update</Text>
+        </TouchableOpacity>
+        {/* <Icon.Button
           style={updateButton}
           name="magnify"
           color="#818181"
           backgroundColor="#FBFDFF"
           onPress={onPressUpdateStatus}
-        />
+        /> */}
       </View>
     </View>
   );
@@ -38,21 +53,37 @@ const styles = StyleSheet.create({
     backgroundColor: '#FBFDFF',
     flexDirection: 'row',
     height: 40,
-    borderRadius: 4.5
+    borderRadius: 4.5,
+    justifyContent: 'center'
   },
   inputContainer: {
     flex: 4,
-    paddingLeft: 15
+    marginLeft: 30
+    // borderWidth: 0.5,
+    // borderColor: '#74777B'
   },
   input: {
-    height: 40
+    height: 40,
+    fontSize: 14
   },
   buttonsContainer: {
     flex: 1,
-    flexDirection: 'row'
+    flexDirection: 'row',
+    borderWidth: 0.8,
+    borderColor: '#74777B',
+    borderRadius: 10,
+    marginRight: 15
   },
   updateButton: {
-    flex: 1
+    flex: 1,
+    alignSelf: 'stretch',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  buttonLabelStyle: {
+    color: '#4963FF',
+    fontSize: 14,
+    fontWeight: 'bold'
   }
 });
 

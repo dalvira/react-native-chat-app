@@ -28,10 +28,12 @@ export default function(state = initialState, action) {
       return {
         ...state,
         displayName: action.payload.snapshot.displayName,
-        firstName: action.payload.snapshot.firstName
+        firstName: action.payload.snapshot.firstName,
+        status: action.payload.snapshot.status
       };
     }
     case ON_CHANGE_TEXT: {
+      console.log(action.payload.text);
       return {
         ...state,
         text: action.payload.text
@@ -45,7 +47,8 @@ export default function(state = initialState, action) {
     case STATUS_UPDATE_SUCCESS: {
       return {
         ...state,
-        status: action.payload.status
+        status: action.payload.status,
+        text: ''
       };
     }
     case SIGN_OUT_SUCCESS: {

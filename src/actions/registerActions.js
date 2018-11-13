@@ -101,7 +101,8 @@ const writeUserData = (
       displayName: displayName,
       firstName: firstName,
       lastName: lastName,
-      dateOfBirth: dateOfBirth
+      dateOfBirth: dateOfBirth,
+      status: "Hey, I'm on Villie!"
     });
 };
 

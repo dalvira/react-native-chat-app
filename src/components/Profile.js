@@ -84,12 +84,13 @@ class Profile extends Component {
             </View>
           </View>
           <View style={statusContainer}>
-            <Text style={statusStyle}>"Im hungry"</Text>
+            <Text style={statusStyle}>{this.props.status}</Text>
           </View>
           <View style={chatButtonContainer}>
             <StatusInput
               onChangeText={handleOnChangeText}
               onPressUpdateStatus={handleOnPressUpdateStatus}
+              value={this.props.text}
             />
           </View>
         </View>

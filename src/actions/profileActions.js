@@ -45,15 +45,6 @@ export function onPressUpdateStatus(status) {
   };
 }
 
-// const updateStatus = (userId, status) => {
-//   firebase
-//     .database()
-//     .ref('users/' + userId)
-//     .set({
-//       status: status
-//     });
-// };
-
 const statusUpdateSuccess = (dispatch, status) => {
   dispatch({
     type: STATUS_UPDATE_SUCCESS,

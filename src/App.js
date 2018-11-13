@@ -14,6 +14,7 @@ import ChatRoomContainer from './containers/ChatRoomContainer';
 import SwitchNav from './AppNavigation';
 import ChatList from './components/ChatList';
 import PhotoGallery from './components/common/PhotoGallery';
+import Profile from './components/Profile';
 
 export default class App extends Component {
   componentWillMount() {
