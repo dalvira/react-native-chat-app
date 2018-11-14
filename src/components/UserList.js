@@ -6,7 +6,7 @@ import SearchBar from './common/SearchBar';
 import UserItem from './UserItem';
 
 import {
-  onChangeText,
+  onChangeSearchText,
   onPressSearch,
   onPressFilter,
   onPressUserItem
@@ -26,7 +26,7 @@ class UserList extends Component {
 
   render() {
     const handleText = text => {
-      this.props.onChangeText(text);
+      this.props.onChangeSearchText(text);
     };
 
     const handleOnPressSearch = () => {
@@ -79,5 +79,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { onChangeText, onPressSearch, onPressFilter, onPressUserItem }
+  { onChangeSearchText, onPressSearch, onPressFilter, onPressUserItem }
 )(UserList);

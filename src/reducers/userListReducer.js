@@ -1,5 +1,5 @@
 import {
-  ON_CHANGE_TEXT,
+  ON_CHANGE_SEARCH_TEXT,
   ON_PRESS_SEARCH,
   USER_SEARCH_FETCH_SUCCESS,
   ON_PRESS_FILTER,
@@ -14,7 +14,7 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case ON_CHANGE_TEXT: {
+    case ON_CHANGE_SEARCH_TEXT: {
       return {
         ...state,
         text: action.payload.text

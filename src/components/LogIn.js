@@ -24,7 +24,9 @@ const LogIn = ({
     inputStyle,
     accountQuestion,
     signUpLink,
-    errorStyle
+    errorStyle,
+    buttonStyle,
+    labelStyle
   } = styles;
 
   handleEmail = text => {
@@ -88,7 +90,12 @@ const LogIn = ({
         </View>
         <View style={styles.buttonsContainer}>
           <View style={styles.logInButtonContainer}>
-            <ButtonCustom label={'Log In'} onPress={this.handleLogIn} />
+            <ButtonCustom
+              buttonStyle={buttonStyle}
+              labelStyle={labelStyle}
+              label={'Log In'}
+              onPress={this.handleLogIn}
+            />
           </View>
           <View style={styles.signUpOptionContainer}>
             <Text style={accountQuestion}>Don't have an account yet? </Text>
@@ -180,6 +187,26 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     fontWeight: '700',
     fontSize: 18
+  },
+  buttonStyle: {
+    flex: 1,
+    alignSelf: 'stretch',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#F6F8FA',
+    borderRadius: 10,
+    borderWidth: 0.5,
+    borderColor: '#3B4EC2',
+    marginLeft: 30,
+    marginRight: 30,
+    shadowOffset: { width: 1, height: 3 },
+    shadowColor: '#000000',
+    shadowOpacity: 0.2
+  },
+  labelStyle: {
+    fontSize: 20,
+    color: '#4963FF',
+    fontWeight: 'bold'
   }
 });
 

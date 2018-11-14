@@ -25,7 +25,28 @@ export function userDataFetch() {
   };
 }
 
-export function toggleDiscoverable(value) {
+export function toggleDiscoverable(value, navigator) {
+  if (value) {
+    this.watchID = navigator.geolocation.watchPosition(
+      position => {
+        let latitude = position.coords.latitude;
+        let longitude = position.coords.longitude;
+        console.log(latitude, ', ', longitude);
+      },
+      error => {
+        error = error.message;
+      },
+      {
+        enableHighAccuracy: true,
+        timeout: 20000,
+        maximumAge: 1000,
+        distanceFilter: 10
+      }
+    );
+  } else {
+    navigator.geolocation.clearWatch(this.watchID);
+  }
+
   return {
     type: TOGGLE_DISCOVERABLE,
     payload: { discoverable: value }

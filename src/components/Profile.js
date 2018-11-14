@@ -64,7 +64,7 @@ class Profile extends Component {
     };
 
     const handleToggleDiscoverable = value => {
-      this.props.toggleDiscoverable(value);
+      this.props.toggleDiscoverable(value, navigator);
     };
 
     const handleOnChangeText = text => {

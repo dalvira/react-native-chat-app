@@ -29,7 +29,9 @@ class User extends Component {
       infoDistanceContainer,
       body,
       optionsButtonContainer,
-      optionsButton
+      optionsButton,
+      buttonStyle,
+      labelStyle
     } = styles;
 
     const handleOnPressOptions = () => {
@@ -64,7 +66,7 @@ class User extends Component {
           <View style={userInfoContainer}>
             <View style={usernameContainer}>
               <Text style={usernameStyle}>
-                {this.props.selectedUser.displayName}
+                @{this.props.selectedUser.displayName}
               </Text>
             </View>
             <View style={infoDistanceContainer}>
@@ -83,7 +85,12 @@ class User extends Component {
             <Text style={statusStyle}>"{this.props.selectedUser.status}"</Text>
           </View>
           <View style={chatButtonContainer}>
-            <ButtonCustom label="CHAT" onPress={onPressChat} />
+            <ButtonCustom
+              buttonStyle={buttonStyle}
+              labelStyle={labelStyle}
+              label="CHAT"
+              onPress={onPressChat}
+            />
           </View>
         </View>
       </View>
@@ -160,6 +167,26 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 1, height: -2 },
     shadowColor: '#000000',
     shadowOpacity: 0.3
+  },
+  buttonStyle: {
+    flex: 1,
+    alignSelf: 'stretch',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#4963FF',
+    borderRadius: 10,
+    borderWidth: 0.5,
+    borderColor: '#3B4EC2',
+    marginLeft: 30,
+    marginRight: 30,
+    shadowOffset: { width: 1, height: 3 },
+    shadowColor: '#000000',
+    shadowOpacity: 0.2
+  },
+  labelStyle: {
+    fontSize: 20,
+    color: '#FFFFFF',
+    fontWeight: 'bold'
   }
 });
 
