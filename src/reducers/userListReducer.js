@@ -8,7 +8,8 @@ import {
 
 const initialState = {
   text: '',
-  searchQuery: ''
+  searchQuery: '',
+  selectedUser: {}
 };
 
 export default function(state = initialState, action) {
@@ -26,10 +27,10 @@ export default function(state = initialState, action) {
       };
     }
     case USER_SEARCH_FETCH_SUCCESS: {
-      console.log(action.payload.snapshot);
+      const uid = action.payload.userId;
       return {
         ...state,
-        searchQuery: action.payload.snapshot
+        selectedUser: action.payload.snapshot[uid]
       };
     }
     case ON_PRESS_FILTER: {

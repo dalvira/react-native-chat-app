@@ -28,10 +28,11 @@ export function onPressSearch(navigation, searchQuery) {
       .ref('users')
       .orderByChild('displayName')
       .equalTo(searchQuery)
-      .once('value', function(snapshot) {
+      .on('value', snapshot => {
+        const userId = Object.keys(snapshot.val())[0];
         dispatch({
           type: USER_SEARCH_FETCH_SUCCESS,
-          payload: { snapshot: snapshot.val() }
+          payload: { snapshot: snapshot.val(), userId: userId }
         });
       });
     navigation.navigate('User');

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
+import { connect } from 'react-redux';
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import ButtonCustom from './common/ButtonCustom';
@@ -62,11 +63,15 @@ class User extends Component {
         <View style={body}>
           <View style={userInfoContainer}>
             <View style={usernameContainer}>
-              <Text style={usernameStyle}>@flowerchild43</Text>
+              <Text style={usernameStyle}>
+                {this.props.selectedUser.displayName}
+              </Text>
             </View>
             <View style={infoDistanceContainer}>
               <View style={nameAgeContainer}>
-                <Text style={nameStyle}>Laura, </Text>
+                <Text style={nameStyle}>
+                  {this.props.selectedUser.firstName},{' '}
+                </Text>
                 <Text style={ageStyle}>27</Text>
               </View>
               <View style={distanceContainer}>
@@ -75,7 +80,7 @@ class User extends Component {
             </View>
           </View>
           <View style={statusContainer}>
-            <Text style={statusStyle}>"Im hungry"</Text>
+            <Text style={statusStyle}>"{this.props.selectedUser.status}"</Text>
           </View>
           <View style={chatButtonContainer}>
             <ButtonCustom label="CHAT" onPress={onPressChat} />
@@ -158,4 +163,11 @@ const styles = StyleSheet.create({
   }
 });
 
-export default User;
+const mapStateToProps = state => ({
+  selectedUser: state.userListReducer.selectedUser
+});
+
+export default connect(
+  mapStateToProps,
+  {}
+)(User);

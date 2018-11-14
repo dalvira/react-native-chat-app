@@ -26,6 +26,7 @@ const initialState = {
 export default function(state = initialState, action) {
   switch (action.type) {
     case USER_DATA_FETCH_SUCCESS: {
+      console.log(action.payload.snapshot);
       return {
         ...state,
         displayName: action.payload.snapshot.displayName,
