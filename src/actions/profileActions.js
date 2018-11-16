@@ -25,13 +25,20 @@ export function userDataFetch() {
   };
 }
 
-export function toggleDiscoverable(value, navigator) {
-  if (value) {
+export function enableDiscoverable(value, navigator) {
+  return dispatch => {
+    updateDiscoverable(value);
     this.watchID = navigator.geolocation.watchPosition(
       position => {
-        let latitude = position.coords.latitude;
-        let longitude = position.coords.longitude;
-        console.log(latitude, ', ', longitude);
+        updateLatLong(position.coords.latitude, position.coords.longitude);
+        dispatch({
+          type: TOGGLE_DISCOVERABLE,
+          payload: {
+            discoverable: value,
+            lat: position.coords.latitude,
+            long: position.coords.longitude
+          }
+        });
       },
       error => {
         error = error.message;
@@ -43,15 +50,45 @@ export function toggleDiscoverable(value, navigator) {
         distanceFilter: 10
       }
     );
-  } else {
-    navigator.geolocation.clearWatch(this.watchID);
-  }
+    // return {
+    //   type: TOGGLE_DISCOVERABLE,
+    //   payload: { discoverable: value }
+    // };
+  };
+}
 
+export function disableDiscoverable(value, navigator) {
+  //clearWatch is not working correctly
+  //background location tracking not working
+  navigator.geolocation.clearWatch(this.watchID);
+  navigator.geolocation.stopObserving();
+  updateDiscoverable(value);
   return {
     type: TOGGLE_DISCOVERABLE,
     payload: { discoverable: value }
   };
 }
+
+const updateDiscoverable = isSharing => {
+  const { currentUser } = firebase.auth();
+  firebase
+    .database()
+    .ref(`/users/${currentUser.uid}/location`)
+    .update({
+      isSharing: isSharing
+    });
+};
+
+const updateLatLong = (lat, long) => {
+  const { currentUser } = firebase.auth();
+  firebase
+    .database()
+    .ref(`/users/${currentUser.uid}/location`)
+    .update({
+      lat: lat,
+      long: long
+    });
+};
 
 export function onChangeText(text) {
   return {

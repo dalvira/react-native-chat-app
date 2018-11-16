@@ -6,6 +6,7 @@ import {
 } from '../actions/chatRoomActions';
 
 const initialState = {
+  selectedUser: '',
   user: {
     _id: 1,
     name: 'Developer',

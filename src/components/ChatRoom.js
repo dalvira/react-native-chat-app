@@ -4,6 +4,7 @@ import { GiftedChat } from 'react-native-gifted-chat';
 
 const ChatRoom = ({
   navigation,
+  selectedUser,
   user,
   text,
   messages,
@@ -16,6 +17,7 @@ const ChatRoom = ({
 
   handleOnPressSend = message => {
     onPressSend(message);
+    console.log(selectedUser);
   };
 
   return (

@@ -56,8 +56,8 @@ const ChatItem = ({
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#FBFDFF',
-    alignItems: 'center',
-    justifyContent: 'center',
+    // alignItems: 'center',
+    // justifyContent: 'center',
     flexDirection: 'row',
     height: 80
   },
@@ -72,22 +72,26 @@ const styles = StyleSheet.create({
     borderRadius: 22
   },
   namesContainer: {
-    flex: 1.7,
-    alignItems: 'flex-start',
-    justifyContent: 'center',
+    flex: 3.7,
+    // alignItems: 'flex-start',
+    // justifyContent: 'center',
     backgroundColor: 'orange'
   },
-  usernameContainer: { backgroundColor: 'blue' },
+  usernameContainer: {
+    flex: 1,
+    backgroundColor: 'blue',
+    justifyContent: 'flex-end'
+  },
   usernameStyle: { fontWeight: '300', fontStyle: 'italic', color: '#818181' },
-  nameContainer: {},
   nameStyle: { fontWeight: '500', color: '#74777B' },
-  messageContainer: { backgroundColor: 'green' },
+  messageContainer: { flex: 1, backgroundColor: 'green' },
   messageStyle: { fontWeight: '400', color: '#74777B' },
   timeContainer: {
     backgroundColor: 'red',
     flex: 1,
-    alignItems: 'flex-start',
-    justifyContent: 'flex-start'
+    alignSelf: 'stretch'
+    // alignItems: 'center',
+    // justifyContent: 'center'
   },
   timeStyle: { fontWeight: '400', color: '#74777B' }
 });

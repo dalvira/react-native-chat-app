@@ -17,7 +17,9 @@ import {
   onChangeText,
   onPressUpdateStatus,
   onPressSettings,
-  onPressSignOut
+  onPressSignOut,
+  enableDiscoverable,
+  disableDiscoverable
 } from '../actions/profileActions';
 
 import PhotoGallery from './common/PhotoGallery';
@@ -26,6 +28,31 @@ import StatusInput from './common/StatusInput';
 class Profile extends Component {
   componentWillMount() {
     this.props.userDataFetch();
+    // if (value == true) {
+    //   let latitude = 0;
+    //   let longitude = 0;
+    //   this.watchID = navigator.geolocation.watchPosition(
+    //     position => {
+    //       let latitude = position.coords.latitude;
+    //       let longitude = position.coords.longitude;
+    //     },
+    //     error => {
+    //       error = error.message;
+    //       console.log('ERROR: ', error);
+    //     },
+    //     {
+    //       enableHighAccuracy: true,
+    //       timeout: 20000,
+    //       maximumAge: 1000,
+    //       distanceFilter: 10
+    //     }
+    //   );
+    //   this.props.updateDiscoverable(value);
+    //   this.props.updateLatLong(latitude, longitude);
+    // } else {
+    //   navigator.geolocation.clearWatch(this.watchID);
+    //   this.props.updateDiscoverable(value);
+    // }
   }
 
   render() {
@@ -64,7 +91,11 @@ class Profile extends Component {
     };
 
     const handleToggleDiscoverable = value => {
-      this.props.toggleDiscoverable(value, navigator);
+      if (value) {
+        this.props.enableDiscoverable(value, navigator);
+      } else {
+        this.props.disableDiscoverable(value, navigator);
+      }
     };
 
     const handleOnChangeText = text => {
@@ -213,11 +244,13 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-  discoverable: state.profileReducer.discoverable,
   displayName: state.profileReducer.displayName,
   firstName: state.profileReducer.firstName,
   lastName: state.profileReducer.lastName,
   age: state.profileReducer.age,
+  discoverable: state.profileReducer.discoverable,
+  lat: state.profileReducer.lat,
+  long: state.profileReducer.long,
   status: state.profileReducer.status,
   text: state.profileReducer.text,
   email: state.profileReducer.email
@@ -231,6 +264,8 @@ export default connect(
     onChangeText,
     onPressUpdateStatus,
     onPressSettings,
-    onPressSignOut
+    onPressSignOut,
+    enableDiscoverable,
+    disableDiscoverable
   }
 )(Profile);

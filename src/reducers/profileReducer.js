@@ -11,12 +11,14 @@ import {
 } from '../actions/profileActions';
 
 const initialState = {
-  discoverable: false,
   displayName: '',
   firstName: '',
   lastName: '',
   age: '',
   status: '',
+  discoverable: false,
+  lat: '',
+  long: '',
   text: '',
   email: '',
   loading: '',
@@ -31,7 +33,10 @@ export default function(state = initialState, action) {
         ...state,
         displayName: action.payload.snapshot.displayName,
         firstName: action.payload.snapshot.firstName,
-        status: action.payload.snapshot.status
+        status: action.payload.snapshot.status,
+        discoverable: action.payload.snapshot.location.isSharing,
+        latitude: action.payload.snapshot.location.lat,
+        longitude: action.payload.snapshot.location.long
       };
     }
     case TOGGLE_DISCOVERABLE: {

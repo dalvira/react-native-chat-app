@@ -15,9 +15,11 @@ class ChatRoomContainer extends Component {
   constructor(props) {
     super(props);
   }
+
   render() {
     return (
       <ChatRoom
+        selectedUser={selectedUser}
         user={this.props.user}
         text={this.props.text}
         messages={this.props.messages}
