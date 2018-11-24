@@ -1,5 +1,6 @@
 import {
   USER_DATA_FETCH_SUCCESS,
+  IMAGES_FETCH_SUCCESS,
   TOGGLE_DISCOVERABLE,
   ON_CHANGE_TEXT,
   STATUS_UPDATE,
@@ -11,6 +12,7 @@ import {
 } from '../actions/profileActions';
 
 const initialState = {
+  imageURLs: [],
   displayName: '',
   firstName: '',
   lastName: '',
@@ -28,7 +30,6 @@ const initialState = {
 export default function(state = initialState, action) {
   switch (action.type) {
     case USER_DATA_FETCH_SUCCESS: {
-      console.log(action.payload.snapshot);
       return {
         ...state,
         displayName: action.payload.snapshot.displayName,
@@ -37,6 +38,12 @@ export default function(state = initialState, action) {
         discoverable: action.payload.snapshot.location.isSharing,
         latitude: action.payload.snapshot.location.lat,
         longitude: action.payload.snapshot.location.long
+      };
+    }
+    case IMAGES_FETCH_SUCCESS: {
+      return {
+        ...state,
+        imageURLs: action.payload.imageURLs
       };
     }
     case TOGGLE_DISCOVERABLE: {

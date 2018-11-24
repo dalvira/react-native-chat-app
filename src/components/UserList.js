@@ -44,13 +44,13 @@ class UserList extends Component {
         name={nearbyUser.item.firstName}
         status={nearbyUser.item.status}
         distance={nearbyUser.item.distance}
-        onPressUserItem={this.props.onPressUserItem}
+        onPressUserItem={handleOnPressUserItem}
       />
     );
   }
 
   render() {
-    // const handleOnPressUserItem = this.props.onPressUserItem;
+    const handleOnPressUserItem = this.props.onPressUserItem;
 
     const handleText = text => {
       this.props.onChangeSearchText(text);
@@ -99,7 +99,6 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
   const nearbyUsersList = _.map(state.userListReducer.nearbyUsersList, val => {
-    console.log({ ...val });
     return { ...val };
   });
   return {

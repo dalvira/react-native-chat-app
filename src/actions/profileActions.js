@@ -1,6 +1,7 @@
 import firebase from 'firebase';
 
 export const USER_DATA_FETCH_SUCCESS = 'USER_DATA_FETCH_SUCCESS';
+export const IMAGES_FETCH_SUCCESS = 'IMAGES_FETCH_SUCCESS';
 export const TOGGLE_DISCOVERABLE = 'TOGGLE_DISCOVERABLE';
 export const ON_CHANGE_TEXT = 'ON_CHANGE_TEXT';
 export const STATUS_UPDATE = 'STATUS_UPDATE';
@@ -21,6 +22,49 @@ export function userDataFetch() {
           type: USER_DATA_FETCH_SUCCESS,
           payload: { snapshot: snapshot.val() }
         });
+      });
+  };
+}
+
+export function fetchImages() {
+  let imageURLs = [];
+  return dispatch => {
+    const { currentUser } = firebase.auth();
+    const storage = firebase.storage();
+    const pathRef = storage.ref(`${currentUser.uid}/images/guyphoto.jpg`);
+    pathRef
+      .getDownloadURL()
+      .then(url => {
+        imageURLs.push(url);
+        dispatch({
+          type: IMAGES_FETCH_SUCCESS,
+          payload: {
+            imageURLs: imageURLs
+          }
+        });
+      })
+      .catch(error => {
+        switch (error.code) {
+          case 'storage/object-not-found': {
+            // File doesn't exist
+            return {};
+          }
+          case 'storage/unauthorized': {
+            // User doesn't have permission to access the object
+            return {};
+          }
+          case 'storage/canceled': {
+            // User canceled the upload
+            return {};
+          }
+          // ...
+          case 'storage/unknown': {
+            // Unknown error occurred, inspect the server response
+            return {};
+          }
+          default:
+            return {};
+        }
       });
   };
 }

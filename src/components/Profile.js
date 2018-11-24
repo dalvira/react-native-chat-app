@@ -13,6 +13,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {
   userDataFetch,
+  fetchImages,
   toggleDiscoverable,
   onChangeText,
   onPressUpdateStatus,
@@ -28,31 +29,7 @@ import StatusInput from './common/StatusInput';
 class Profile extends Component {
   componentWillMount() {
     this.props.userDataFetch();
-    // if (value == true) {
-    //   let latitude = 0;
-    //   let longitude = 0;
-    //   this.watchID = navigator.geolocation.watchPosition(
-    //     position => {
-    //       let latitude = position.coords.latitude;
-    //       let longitude = position.coords.longitude;
-    //     },
-    //     error => {
-    //       error = error.message;
-    //       console.log('ERROR: ', error);
-    //     },
-    //     {
-    //       enableHighAccuracy: true,
-    //       timeout: 20000,
-    //       maximumAge: 1000,
-    //       distanceFilter: 10
-    //     }
-    //   );
-    //   this.props.updateDiscoverable(value);
-    //   this.props.updateLatLong(latitude, longitude);
-    // } else {
-    //   navigator.geolocation.clearWatch(this.watchID);
-    //   this.props.updateDiscoverable(value);
-    // }
+    this.props.fetchImages();
   }
 
   render() {
@@ -80,12 +57,6 @@ class Profile extends Component {
       usernameStyle
     } = styles;
 
-    const images = [
-      require('./common/img/guyphoto.jpg'),
-      require('./common/img/guyphoto2.jpg'),
-      require('./common/img/guyphoto3.jpg')
-    ];
-
     const handleOnPressSettings = () => {
       this.props.onPressSettings(this.props.navigation);
     };
@@ -109,7 +80,7 @@ class Profile extends Component {
     return (
       <View style={container}>
         <View style={photoContainer}>
-          <PhotoGallery images={images} />
+          <PhotoGallery images={this.props.imageURLs} />
         </View>
         <View style={settingsButtonContainer}>
           <Icon.Button
@@ -244,6 +215,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
+  imageURLs: state.profileReducer.imageURLs,
   displayName: state.profileReducer.displayName,
   firstName: state.profileReducer.firstName,
   lastName: state.profileReducer.lastName,
@@ -260,6 +232,7 @@ export default connect(
   mapStateToProps,
   {
     userDataFetch,
+    fetchImages,
     toggleDiscoverable,
     onChangeText,
     onPressUpdateStatus,

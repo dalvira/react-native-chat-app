@@ -10,7 +10,7 @@ class PhotoGallery extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <ImageSlider
+        {/* <ImageSlider
           images={this.props.images}
           customSlide={({ index, item, style, width }) => (
             <View key={index} style={[style, styles.photoContainer]}>
@@ -18,6 +18,18 @@ class PhotoGallery extends Component {
                 style={styles.photoStyle}
                 resizeMode="cover"
                 source={item}
+              />
+            </View>
+          )}
+        /> */}
+        <ImageSlider
+          images={this.props.images}
+          customSlide={({ index, item, style, width }) => (
+            <View key={index} style={[style, styles.photoContainer]}>
+              <Image
+                style={styles.photoStyle}
+                resizeMode="cover"
+                source={{ uri: item }}
               />
             </View>
           )}
