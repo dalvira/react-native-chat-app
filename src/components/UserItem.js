@@ -4,12 +4,13 @@ import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const UserItem = ({
+  id,
   photoPath,
   username,
   name,
   status,
   distance,
-  onPressUserItem
+  handleOnPressUserItem
 }) => {
   const {
     container,
@@ -27,7 +28,7 @@ const UserItem = ({
   } = styles;
 
   return (
-    <TouchableOpacity onPress={onPressUserItem}>
+    <TouchableOpacity onPress={handleOnPressUserItem}>
       <View style={container}>
         <View style={photoContainer}>
           <Image
@@ -37,17 +38,17 @@ const UserItem = ({
         </View>
         <View style={namesContainer}>
           <View style={usernameContainer}>
-            <Text style={usernameStyle}>{username}</Text>
+            <Text style={usernameStyle}>@{username}</Text>
           </View>
           <View style={nameContainer}>
             <Text style={nameStyle}>{name}</Text>
           </View>
         </View>
         <View style={statusContainer}>
-          <Text style={statusStyle}>"{status}"</Text>
+          <Text style={statusStyle}>{status}</Text>
         </View>
         <View style={distanceContainer}>
-          <Text style={distanceStyle}>{distance}</Text>
+          <Text style={distanceStyle}>{distance} mi</Text>
         </View>
       </View>
     </TouchableOpacity>
@@ -60,7 +61,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
-    height: 80
+    height: 80,
+    borderWidth: 0.2,
+    borderColor: '#C9C7CB'
   },
   photoContainer: {
     flex: 1.3,
@@ -73,18 +76,24 @@ const styles = StyleSheet.create({
     borderRadius: 22
   },
   namesContainer: {
-    flex: 1.7,
+    flex: 1.5,
     alignItems: 'flex-start',
     justifyContent: 'center'
   },
   usernameContainer: {},
-  usernameStyle: { fontWeight: '300', fontStyle: 'italic', color: '#818181' },
+  usernameStyle: {
+    fontSize: 12,
+    fontWeight: '300',
+    fontStyle: 'italic',
+    color: '#818181'
+  },
   nameContainer: {},
   nameStyle: { fontWeight: '500', color: '#74777B' },
   statusContainer: {
     flex: 2,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    marginRight: 8
   },
   statusStyle: { fontWeight: '400', color: '#74777B' },
   distanceContainer: {

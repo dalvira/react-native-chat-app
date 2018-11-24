@@ -25,6 +25,9 @@ export function userDataFetch() {
   };
 }
 
+//When refreshing the application and isSharing is true,
+// location does not update after being change because watchID is not executed
+// until discoverable is toggled
 export function enableDiscoverable(value, navigator) {
   return dispatch => {
     updateDiscoverable(value);
@@ -50,15 +53,11 @@ export function enableDiscoverable(value, navigator) {
         distanceFilter: 10
       }
     );
-    // return {
-    //   type: TOGGLE_DISCOVERABLE,
-    //   payload: { discoverable: value }
-    // };
   };
 }
 
 export function disableDiscoverable(value, navigator) {
-  //clearWatch is not working correctly
+  //clearWatch is not working correctly (called stop observing with existing subscriptions)
   //background location tracking not working
   navigator.geolocation.clearWatch(this.watchID);
   navigator.geolocation.stopObserving();

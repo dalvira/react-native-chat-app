@@ -57,3 +57,8 @@ buck-out/
 
 #React Native
 server.js
+
+#Firebase
+functions/
+firebase.json
+.firebaserc

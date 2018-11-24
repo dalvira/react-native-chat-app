@@ -2,6 +2,7 @@ import {
   ON_CHANGE_SEARCH_TEXT,
   ON_PRESS_SEARCH,
   USER_SEARCH_FETCH_SUCCESS,
+  NEARBY_USERS_FETCH_SUCCESS,
   ON_PRESS_FILTER,
   ON_PRESS_USER_ITEM
 } from '../actions/userListActions';
@@ -9,7 +10,8 @@ import {
 const initialState = {
   text: '',
   searchQuery: '',
-  selectedUser: {}
+  selectedUser: {},
+  nearbyUsersList: []
 };
 
 export default function(state = initialState, action) {
@@ -33,9 +35,10 @@ export default function(state = initialState, action) {
         selectedUser: action.payload.snapshot[uid]
       };
     }
-    case ON_PRESS_FILTER: {
+    case NEARBY_USERS_FETCH_SUCCESS: {
       return {
-        ...state
+        ...state,
+        nearbyUsersList: action.payload.snapshot
       };
     }
     case ON_PRESS_USER_ITEM: {

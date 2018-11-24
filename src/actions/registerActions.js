@@ -110,7 +110,8 @@ const writeUserData = (
       firstName: firstName,
       lastName: lastName,
       dateOfBirth: dateOfBirth,
-      status: "Hey, I'm on Villie!"
+      status: "Hey, I'm on Villie!",
+      location: { isSharing: false, lat: 0, long: 0 }
     });
 };
 

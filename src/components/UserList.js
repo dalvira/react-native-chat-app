@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 import { connect } from 'react-redux';
+import _ from 'lodash';
 
 import SearchBar from './common/SearchBar';
 import UserItem from './UserItem';
@@ -8,7 +9,7 @@ import UserItem from './UserItem';
 import {
   onChangeSearchText,
   onPressSearch,
-  onPressFilter,
+  fetchNearbyUsers,
   onPressUserItem
 } from '../actions/userListActions';
 
@@ -24,7 +25,33 @@ class UserList extends Component {
     };
   }
 
+  componentWillMount() {
+    this.props.fetchNearbyUsers();
+  }
+
+  // handleOnPressUserItem = () => {
+  //   this.props.navigation.navigate('User');
+  // };
+
+  keyExtractor = (nearbyUser, index) => nearbyUser.id;
+
+  renderRow(nearbyUser, handleOnPressUserItem) {
+    return (
+      <UserItem
+        id={nearbyUser.item.id}
+        // photoPath={this.state.photoPath}
+        username={nearbyUser.item.displayName}
+        name={nearbyUser.item.firstName}
+        status={nearbyUser.item.status}
+        distance={nearbyUser.item.distance}
+        onPressUserItem={this.props.onPressUserItem}
+      />
+    );
+  }
+
   render() {
+    // const handleOnPressUserItem = this.props.onPressUserItem;
+
     const handleText = text => {
       this.props.onChangeSearchText(text);
     };
@@ -33,11 +60,7 @@ class UserList extends Component {
       this.props.onPressSearch(this.props.navigation, this.props.text);
     };
 
-    const handleOnPressUserItem = () => {
-      this.props.navigation.navigate('User');
-    };
-
-    const { container, searchBarContainer } = styles;
+    const { container, searchBarContainer, listContainer } = styles;
 
     return (
       <View style={container}>
@@ -47,14 +70,13 @@ class UserList extends Component {
             onPressSearch={handleOnPressSearch}
           />
         </View>
-        <UserItem
-          photoPath={this.state.photoPath}
-          username={this.state.username}
-          name={this.state.name}
-          status={this.state.status}
-          distance={this.state.distance}
-          onPressUserItem={handleOnPressUserItem}
-        />
+        <View style={listContainer}>
+          <FlatList
+            data={this.props.nearbyUsersList}
+            keyExtractor={this.keyExtractor}
+            renderItem={this.renderRow}
+          />
+        </View>
       </View>
     );
   }
@@ -66,18 +88,27 @@ const styles = StyleSheet.create({
     backgroundColor: '#C9C7CB'
   },
   searchBarContainer: {
+    flex: 1,
     paddingTop: 10,
     paddingBottom: 10,
     paddingLeft: 10,
     paddingRight: 10
-  }
+  },
+  listContainer: { flex: 15 }
 });
 
-const mapStateToProps = state => ({
-  text: state.userListReducer.text
-});
+const mapStateToProps = state => {
+  const nearbyUsersList = _.map(state.userListReducer.nearbyUsersList, val => {
+    console.log({ ...val });
+    return { ...val };
+  });
+  return {
+    nearbyUsersList,
+    text: state.userListReducer.text
+  };
+};
 
 export default connect(
   mapStateToProps,
-  { onChangeSearchText, onPressSearch, onPressFilter, onPressUserItem }
+  { onChangeSearchText, onPressSearch, fetchNearbyUsers, onPressUserItem }
 )(UserList);
