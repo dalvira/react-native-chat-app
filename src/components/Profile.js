@@ -29,7 +29,7 @@ import StatusInput from './common/StatusInput';
 class Profile extends Component {
   componentWillMount() {
     this.props.userDataFetch();
-    this.props.fetchImages();
+    // this.props.fetchImages();
   }
 
   render() {

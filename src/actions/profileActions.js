@@ -26,6 +26,7 @@ export function userDataFetch() {
   };
 }
 
+//Cannot download all files in cloud storage, only specified file
 export function fetchImages() {
   let imageURLs = [];
   return dispatch => {

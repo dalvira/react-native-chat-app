@@ -29,35 +29,33 @@ class UserList extends Component {
     this.props.fetchNearbyUsers();
   }
 
-  // handleOnPressUserItem = () => {
-  //   this.props.navigation.navigate('User');
-  // };
-
   keyExtractor = (nearbyUser, index) => nearbyUser.id;
 
-  renderRow(nearbyUser, handleOnPressUserItem) {
-    return (
-      <UserItem
-        id={nearbyUser.item.id}
-        // photoPath={this.state.photoPath}
-        username={nearbyUser.item.displayName}
-        name={nearbyUser.item.firstName}
-        status={nearbyUser.item.status}
-        distance={nearbyUser.item.distance}
-        onPressUserItem={handleOnPressUserItem}
-      />
-    );
-  }
-
   render() {
-    const handleOnPressUserItem = this.props.onPressUserItem;
-
     const handleText = text => {
       this.props.onChangeSearchText(text);
     };
 
     const handleOnPressSearch = () => {
       this.props.onPressSearch(this.props.navigation, this.props.text);
+    };
+
+    const handleOnPressUserItem = nearbyUser => {
+      this.props.onPressUserItem(this.props.navigation, nearbyUser);
+    };
+
+    const renderRow = nearbyUser => {
+      return (
+        <UserItem
+          id={nearbyUser.item.id}
+          photoPath={nearbyUser.item.imageURLs[0]}
+          username={nearbyUser.item.displayName}
+          name={nearbyUser.item.firstName}
+          status={nearbyUser.item.status}
+          distance={nearbyUser.item.distance}
+          onPressUserItem={() => handleOnPressUserItem(nearbyUser.item)}
+        />
+      );
     };
 
     const { container, searchBarContainer, listContainer } = styles;
@@ -74,7 +72,7 @@ class UserList extends Component {
           <FlatList
             data={this.props.nearbyUsersList}
             keyExtractor={this.keyExtractor}
-            renderItem={this.renderRow}
+            renderItem={renderRow}
           />
         </View>
       </View>

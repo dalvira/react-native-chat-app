@@ -10,7 +10,7 @@ const UserItem = ({
   name,
   status,
   distance,
-  handleOnPressUserItem
+  onPressUserItem
 }) => {
   const {
     container,
@@ -28,13 +28,10 @@ const UserItem = ({
   } = styles;
 
   return (
-    <TouchableOpacity onPress={handleOnPressUserItem}>
+    <TouchableOpacity onPress={onPressUserItem}>
       <View style={container}>
         <View style={photoContainer}>
-          <Image
-            style={photoStyle}
-            source={require('./common/img/girlphoto.jpg')}
-          />
+          <Image style={photoStyle} source={{ uri: photoPath }} />
         </View>
         <View style={namesContainer}>
           <View style={usernameContainer}>

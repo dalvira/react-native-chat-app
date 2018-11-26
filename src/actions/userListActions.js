@@ -48,21 +48,12 @@ export const fetchNearbyUsers = () => {
   };
 };
 
-export function onPressUserItem(navigation, user) {
-  const { currentUser } = firebase.auth;
+export function onPressUserItem(navigation, nearbyUser) {
   return dispatch => {
-    firebase
-      .database()
-      .ref('users')
-      .orderByChild('displayName')
-      .equalTo(searchQuery)
-      .on('value', snapshot => {
-        const userId = Object.keys(snapshot.val())[0];
-        dispatch({
-          type: ON_PRESS_USER_ITEM,
-          payload: { snapshot: snapshot.val(), userId: userId }
-        });
-      });
+    dispatch({
+      type: ON_PRESS_USER_ITEM,
+      payload: { selectedUser: nearbyUser }
+    });
     navigation.navigate('User');
   };
 }

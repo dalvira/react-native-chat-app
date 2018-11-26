@@ -30,8 +30,10 @@ const initialState = {
 export default function(state = initialState, action) {
   switch (action.type) {
     case USER_DATA_FETCH_SUCCESS: {
+      console.log(action.payload.imageURLs);
       return {
         ...state,
+        imageURLs: action.payload.snapshot.imageURLs,
         displayName: action.payload.snapshot.displayName,
         firstName: action.payload.snapshot.firstName,
         status: action.payload.snapshot.status,

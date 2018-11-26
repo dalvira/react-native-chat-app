@@ -51,7 +51,7 @@ class User extends Component {
     return (
       <View style={container}>
         <View style={photoContainer}>
-          <PhotoGallery images={images} />
+          <PhotoGallery images={this.props.selectedUser.imageURLs} />
         </View>
         <View style={optionsButtonContainer}>
           <Icon.Button

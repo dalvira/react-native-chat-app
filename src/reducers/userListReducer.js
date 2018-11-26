@@ -44,7 +44,7 @@ export default function(state = initialState, action) {
     case ON_PRESS_USER_ITEM: {
       return {
         ...state,
-        user: action.payload.user
+        selectedUser: action.payload.selectedUser
       };
     }
     default:
