@@ -15,6 +15,7 @@ import SwitchNav from './AppNavigation';
 import ChatList from './components/ChatList';
 import PhotoGallery from './components/common/PhotoGallery';
 import Profile from './components/Profile';
+import ChatItem from './components/ChatItem';
 
 export default class App extends Component {
   componentWillMount() {
@@ -29,3 +30,10 @@ export default class App extends Component {
     );
   }
 }
+
+const styles = {
+  container: {
+    flex: 0.5,
+    backgroundColor: 'black'
+  }
+};

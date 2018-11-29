@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 
 const ChatItem = ({
+  id,
   photo,
   name,
-  online,
-  status,
-  distance,
-  onPressUserItem
+  recentMessage,
+  time,
+  onPressChatItem
 }) => {
   const {
     container,
@@ -16,12 +16,6 @@ const ChatItem = ({
     namesContainer,
     usernameContainer,
     usernameStyle,
-    nameContainer,
-    nameStyle,
-    statusContainer,
-    statusStyle,
-    distanceContainer,
-    distanceStyle,
     messageContainer,
     messageStyle,
     timeContainer,
@@ -29,7 +23,7 @@ const ChatItem = ({
   } = styles;
 
   return (
-    <TouchableOpacity onPress={onPressUserItem}>
+    <TouchableOpacity onPress={onPressChatItem}>
       <View style={container}>
         <View style={photoContainer}>
           <Image
@@ -42,11 +36,14 @@ const ChatItem = ({
             <Text style={usernameStyle}>username</Text>
           </View>
           <View style={messageContainer}>
-            <Text style={messageStyle}>Are you serious?</Text>
+            <Text style={messageStyle}>Recent message.</Text>
           </View>
         </View>
-        <View style={timeContainer}>
-          <Text style={timeStyle}>3:32 pm</Text>
+        <View style={namesContainer}>
+          <View style={timeContainer}>
+            <Text style={timeStyle}>3:32 pm</Text>
+          </View>
+          <View style={messageContainer} />
         </View>
       </View>
     </TouchableOpacity>
@@ -56,15 +53,17 @@ const ChatItem = ({
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#FBFDFF',
-    // alignItems: 'center',
-    // justifyContent: 'center',
     flexDirection: 'row',
-    height: 80
+    height: 80,
+    borderWidth: 0.2,
+    borderColor: '#C9C7CB'
   },
   photoContainer: {
     flex: 1.3,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    marginLeft: 10,
+    marginRight: 10
   },
   photoStyle: {
     height: 45,
@@ -72,26 +71,22 @@ const styles = StyleSheet.create({
     borderRadius: 22
   },
   namesContainer: {
-    flex: 3.7,
-    // alignItems: 'flex-start',
-    // justifyContent: 'center',
-    backgroundColor: 'orange'
+    flex: 3.7
   },
   usernameContainer: {
     flex: 1,
-    backgroundColor: 'blue',
     justifyContent: 'flex-end'
   },
   usernameStyle: { fontWeight: '300', fontStyle: 'italic', color: '#818181' },
   nameStyle: { fontWeight: '500', color: '#74777B' },
-  messageContainer: { flex: 1, backgroundColor: 'green' },
+  messageContainer: { flex: 1, paddingTop: 3 },
   messageStyle: { fontWeight: '400', color: '#74777B' },
   timeContainer: {
-    backgroundColor: 'red',
     flex: 1,
-    alignSelf: 'stretch'
-    // alignItems: 'center',
-    // justifyContent: 'center'
+    alignSelf: 'stretch',
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end',
+    marginRight: 10
   },
   timeStyle: { fontWeight: '400', color: '#74777B' }
 });

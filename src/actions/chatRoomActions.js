@@ -12,7 +12,7 @@ export const messagesFetch = () => {
     const { currentUser } = firebase.auth();
     firebase
       .database()
-      .ref(`/users/${currentUser.uid}/messages`)
+      .ref(`/chatrooms/${id}/messages`)
       .on('value', snapshot => {
         dispatch({
           type: MESSAGES_FETCH_SUCCESS,
@@ -29,20 +29,34 @@ export function onChangeText(text) {
   };
 }
 
+//when starting a new conversation a chatroom id is created
+//if the members of the conversation do not already share
+//an existing chatroom
+
 export function onPressSend(message) {
   return dispatch => {
-    dispatch({ type: SEND });
     const { currentUser } = firebase.auth();
-    fetchUser(dispatch, currentUser);
+    fetchUser(dispatch, currentUser.uid);
+    console.log(message);
+    const id = message[0]._id;
+    const text = message[0].text;
+    const createdAt = message[0].createdAt;
+    const user = message[0].user;
+    const image = message[0].image;
+    console.log(id, text, createdAt, user, image);
+    dispatch({ type: SEND });
+    // console.log(currentUser.uid);
     firebase
       .database()
-      .ref(`/users/${currentUser.uid}/conversations`)
-      .push({ message });
+      .ref(`/chatrooms/0/messages`)
+      .set({ id });
+    // .set({ createdAt: createdAt, text: text });
     sendSuccess(dispatch, message);
   };
 }
 
 const fetchUser = (dispatch, user) => {
+  console.log(user);
   dispatch({
     type: USER_FETCH_SUCCESS,
     payload: { user: user }

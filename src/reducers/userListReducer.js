@@ -3,7 +3,6 @@ import {
   ON_PRESS_SEARCH,
   USER_SEARCH_FETCH_SUCCESS,
   NEARBY_USERS_FETCH_SUCCESS,
-  ON_PRESS_FILTER,
   ON_PRESS_USER_ITEM
 } from '../actions/userListActions';
 

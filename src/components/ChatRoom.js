@@ -8,6 +8,7 @@ const ChatRoom = ({
   user,
   text,
   messages,
+  messagesFetch,
   onChangeText,
   onPressSend
 }) => {
@@ -17,7 +18,6 @@ const ChatRoom = ({
 
   handleOnPressSend = message => {
     onPressSend(message);
-    console.log(selectedUser);
   };
 
   return (

@@ -45,17 +45,20 @@ class UserList extends Component {
     };
 
     const renderRow = nearbyUser => {
-      return (
-        <UserItem
-          id={nearbyUser.item.id}
-          photoPath={nearbyUser.item.imageURLs[0]}
-          username={nearbyUser.item.displayName}
-          name={nearbyUser.item.firstName}
-          status={nearbyUser.item.status}
-          distance={nearbyUser.item.distance}
-          onPressUserItem={() => handleOnPressUserItem(nearbyUser.item)}
-        />
-      );
+      if (nearbyUser == undefined) {
+      } else {
+        return (
+          <UserItem
+            id={nearbyUser.item.id}
+            photoPath={nearbyUser.item.imageURLs[0]}
+            username={nearbyUser.item.displayName}
+            name={nearbyUser.item.firstName}
+            status={nearbyUser.item.status}
+            distance={nearbyUser.item.distance}
+            onPressUserItem={() => handleOnPressUserItem(nearbyUser.item)}
+          />
+        );
+      }
     };
 
     const { container, searchBarContainer, listContainer } = styles;

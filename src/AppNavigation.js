@@ -94,7 +94,7 @@ const TabNav = createBottomTabNavigator(
         const { routeName } = navigation.state;
         let iconName;
         if (routeName === 'UserListStack') {
-          iconName = `account-multiple${focused ? '' : '-outline'}`;
+          iconName = `home${focused ? '' : '-outline'}`;
         } else if (routeName === 'ChatListStack') {
           iconName = `message-text${focused ? '' : '-outline'}`;
         } else if (routeName === 'ProfileStack') {

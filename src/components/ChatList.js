@@ -1,38 +1,38 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { connect } from 'react-redux';
+import _ from 'lodash';
+
+import { fetchChats } from '../actions/chatListActions';
 
 import ChatItem from './ChatItem';
 
 class ChatList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      photo: 'photo',
-      name: 'Laura',
-      status: 'Im hungry',
-      online: 'online',
-      distance: '2 mi'
-    };
+  componentWillMount() {
+    this.props.fetchChats();
   }
 
+  keyExtractor = (chatItem, index) => chatItem.id;
+
   render() {
-    const onPressChatItem = () => {
-      console.log('User Item');
-      this.props.navigation.navigate('ChatRoom');
+    const renderRow = chatItem => {
+      if (chatItem == undefined) {
+      } else {
+        return <ChatItem />;
+      }
     };
 
-    const { container } = styles;
+    const { container, listContainer } = styles;
 
     return (
       <View style={container}>
-        <ChatItem
-          photo={this.state.photo}
-          name={this.state.name}
-          status={this.state.status}
-          online={this.state.online}
-          distance={this.state.distance}
-          onPressUserItem={onPressChatItem}
-        />
+        <View style={listContainer}>
+          <FlatList
+            data={this.props.chatrooms}
+            keyExtractor={this.keyExtractor}
+            renderItem={renderRow}
+          />
+        </View>
       </View>
     );
   }
@@ -42,7 +42,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#C9C7CB'
-  }
+  },
+  listContainer: { flex: 1 }
 });
 
-export default ChatList;
+const mapStateToProps = state => ({
+  chatrooms: state.chatListReducer.chatrooms
+});
+
+export default connect(
+  mapStateToProps,
+  { fetchChats }
+)(ChatList);

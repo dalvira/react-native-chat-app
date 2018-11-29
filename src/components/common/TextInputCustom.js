@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
   labelStyle: {
     fontSize: 14,
     color: '#FFFFFF',
-    fontWeight: '500'
+    fontWeight: 'bold'
   },
   textInputStyle: {
     height: 30,

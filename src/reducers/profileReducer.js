@@ -5,7 +5,6 @@ import {
   ON_CHANGE_TEXT,
   STATUS_UPDATE,
   STATUS_UPDATE_SUCCESS,
-  ON_PRESS_UPDATE_STATUS,
   ON_PRESS_SETTINGS,
   SIGN_OUT_SUCCESS,
   SIGN_OUT_FAIL
@@ -30,7 +29,6 @@ const initialState = {
 export default function(state = initialState, action) {
   switch (action.type) {
     case USER_DATA_FETCH_SUCCESS: {
-      console.log(action.payload.imageURLs);
       return {
         ...state,
         imageURLs: action.payload.snapshot.imageURLs,
